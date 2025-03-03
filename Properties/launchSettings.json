@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileTransform": {
+      "commandName": "Project",
+      "commandLineArgs": "manhattanpunch TimeClockChangeEntity"
+    }
+  }
+}
