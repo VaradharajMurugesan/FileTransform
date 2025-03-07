@@ -6,6 +6,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using FileTransform.Logging;
 using Renci.SshNet;
+using System.Xml;
 
 namespace FileTransform.SFTPExtract
 {
@@ -90,5 +91,6 @@ namespace FileTransform.SFTPExtract
             File.Delete(gzFilePath);
             LoggerObserver.LogFileProcessed($"Deleted the .gz file: {gzFilePath}");
         }
+                        
     }
 }

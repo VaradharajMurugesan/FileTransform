@@ -88,7 +88,7 @@ ffc94b77-e1b6-477a-8934-b6fe05c53190,PhiladelphiaNorthwest,Philadelphia Northwes
 2439a074-c52a-4d33-9fe6-b268005b027c,NewYorkCityMetro,New York City Metro,2024-09-08T21:09:49,System,System,ENABLED,,,America/Los_Angeles,Sunday,UpperField,,East,
 460b7b7e-d530-4fae-8606-2513da34846c,OklahomaWest,Oklahoma West,2024-07-18T12:55:58,System,System,ENABLED,,,America/Los_Angeles,Sunday,District,,Mountain,
 4c6afc94-fe03-4f37-8c5e-c8f414c1e1d4,LosAngelesEast,Los Angeles East,2024-07-18T12:55:54,System,System,ENABLED,,,America/Los_Angeles,Sunday,District,,West,
-511f6414-9e28-42fb-9c72-76badec5c090,1315,1315 Pico Rivera,2024-08-30T19:56:04,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,LosAngelesEast,2021-01-01
+511f6414-9e28-42fb-9c72-76badec5c090,1315,1315 Pico Rivera,2025-03-03T22:08:58,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"8850 Washington Blvd, Pico Rivera, CA, 90660",America/Los_Angeles,Sunday,Real,Real,LosAngelesEast,2021-01-01
 590d1229-7031-4d75-a6bf-a41c22a5ba7d,1340,1340 Hemet,2024-07-18T12:57:34,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,SanDiegoNorth,2021-01-01
 5aca5ad5-eed1-4044-a02c-94ebdff1875a,1388,1388 Fullerton,2024-08-30T19:56:08,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,SanGabrielValley,2021-10-01
 600a5815-ebf1-4036-9c58-8436acf0648b,71900_PT,Pacific - New Store Growth - WowTown,2024-12-23T17:17:16,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,71900,2024-01-01
@@ -297,7 +297,7 @@ b93ee473-2c84-4aeb-bebc-e06d82cdd9f2,81000_PT,Pacific - Visual Merchandising - W
 d7e52006-48ee-4313-917d-1e7a93db9317,Milwaukee,Milwaukee,2024-07-18T12:55:52,System,System,ENABLED,,,America/Los_Angeles,Sunday,District,,Midwest,
 db5a6162-99fb-4004-b40e-ace66c62cca3,8086,8086 Old Saybrook,2024-08-30T19:57:03,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,ConnecticutEast,2021-08-27
 ebca4ec6-de1e-4b27-af90-f3b6183b0a2e,1334,1334 El Monte,2024-07-18T12:56:07,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,LosAngelesEast,2021-01-01
-fc747be2-aa75-4bcd-9e8e-38dd813dafc3,1375,1375 South LA,2025-01-13T13:25:51,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"5850 S Vermont Ave Ste C, Los Angeles, CA, 90044",America/Los_Angeles,Sunday,Real,Real,LosAngelesEast,2021-01-01
+fc747be2-aa75-4bcd-9e8e-38dd813dafc3,1375,1375 South LA,2025-03-03T17:22:18,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"5850 S Vermont Ave Ste C, Los Angeles, CA, 90044",America/Los_Angeles,Sunday,Real,Real,LosAngelesEast,2021-01-01
 fd0e966d-66d9-4302-8d77-9aae5a7feeb7,1338,1338 Upland,2024-07-18T12:56:18,System,System,ENABLED,,,America/Los_Angeles,Sunday,Real,Real,SanGabrielValley,2021-01-01
 7231692d-bdee-4bb2-8e9f-c84fc9be8ede,4063,4063 Crystal City,2024-09-24T13:44:38,System,System,ENABLED,,,America/North_Dakota/Center,Sunday,Real,Real,StLouisSouth,2022-12-21
 3eef6aad-1550-4ac4-aa0c-7c88a264ea8c,8139,8139 Bala Cynwyd,2024-09-24T13:45:25,System,System,ENABLED,,,America/Panama,Sunday,Real,Real,PhiladelphiaMetroWest,2022-08-15
@@ -1213,7 +1213,7 @@ e0083d8b-7fb9-4a9d-94ac-1036e5d387c2,81000,WowTown - Visual Merchandising,2024-1
 e58d1c69-526b-423a-ac6a-1863675b21c3,161,161 Levittown,2024-07-18T12:56:48,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,PhiladelphiaEast,2020-01-01
 f31af984-8907-4942-b3fb-ad64188f4b82,419,419 Milford,2024-09-24T13:44:08,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,ConnecticutWest,2020-01-01
 f60859f1-80a5-4b50-b369-a9cf7668cb37,PittsburghWest,Pittsburgh West,2024-07-18T12:55:54,System,System,ENABLED,,,America/New_York,Sunday,District,,GreatLakes,
-f6ace38f-d779-4940-8b7d-15a2348b4e99,8193,8193 Harrisonburg,2024-08-30T19:57:18,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,WestVirginia,2023-07-01
+f6ace38f-d779-4940-8b7d-15a2348b4e99,8193,8193 Harrisonburg,2025-03-03T17:22:42,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"1925 E Market St Ste 408, Harrisonburg, VA, 22801",America/New_York,Sunday,Real,Real,WestVirginia,2023-07-01
 f885cd07-754d-4c86-94aa-44e701456e2e,8171,8171 Norfolk VA,2024-08-30T19:57:08,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,VirginiaBeach,2024-02-01
 fec0c1a0-2432-457d-a0ce-3e555944392d,528,528 32 East,2024-07-18T12:56:09,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,Cincinnati,2020-01-01
 ff35303c-5d23-4e31-952c-1556f7637439,6294,6294 S Fort Myers,2024-08-30T19:56:49,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,Sarasota,2024-03-01
@@ -1775,7 +1775,7 @@ fa4b06ad-035b-4827-bf43-5763714d1321,8122,8122 Jamaica Avenue,2024-09-24T13:45:2
 2058410a-d48a-4b48-856d-b4da79d5b36e,6089,6089 West Palm Beach,2024-07-18T12:56:08,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,PalmBeachSouth,2020-01-01
 21e38878-0431-4fdf-b09b-dfa38b021fd9,Bronx,Bronx,2024-09-08T21:09:50,System,System,ENABLED,,,America/New_York,Sunday,District,,NewYorkCityMetro,
 23225ea1-94ca-4fef-a31f-bef960477145,SCNJMAINTENANCE,SC-New Jersey Maintenance,2024-09-24T13:43:39,System,System,ENABLED,,,America/New_York,Sunday,LocationGroup,Real,SCNJ,2024-01-01
-2c9f33e2-a103-4b4e-bab6-b13cfd708397,125,125 Market East,2025-01-13T13:25:31,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"701 Market St, Philadelphia, PA, 19106",America/New_York,Sunday,Real,Real,PhiladelphiaMetroWest,2020-01-01
+2c9f33e2-a103-4b4e-bab6-b13cfd708397,125,125 Market East,2025-03-03T17:21:52,2a6a48d1-dddb-4cdd-a254-9e08137a8179,241634,ENABLED,,"701 Market St, Philadelphia, PA, 19106",America/New_York,Sunday,Real,Real,PhiladelphiaMetroWest,2020-01-01
 2f35a9eb-5d02-4018-bbd4-b2982072fa3d,99000_ET,Eastern - Executive - WowTown,2024-12-23T17:17:22,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,99000,2024-01-01
 2f8d4997-81b8-4a17-97a5-d69fe9640de8,8100,8100 607 6th Ave,2024-08-30T19:57:04,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,Manhattan,2023-07-01
 30f48a17-f4b6-4add-ba3c-b7d13b372f1a,8056,8056 Bristol,2024-08-30T19:57:01,System,System,ENABLED,,,America/New_York,Sunday,Real,Real,ConnecticutWest,2020-07-09

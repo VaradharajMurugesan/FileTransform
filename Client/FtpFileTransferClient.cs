@@ -244,9 +244,6 @@ namespace FileTransform.Client
             }
         }
 
-
-
-
         public async Task UploadAsync(string localFilePath, string remoteFilePath)
         {
             using (var sftp = new SftpClient(_host, _port, _username, _password))

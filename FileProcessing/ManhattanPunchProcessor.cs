@@ -27,6 +27,8 @@ namespace FileTransform.FileProcessing
         private bool mealBreakFlag = false;
         private string outputFileName = string.Empty;
         private string outputPath = string.Empty;
+        // Step 1: Retrieve last used INSERT_BATCH_ID and increment it
+        private int insertBatchId = 40000; // Default starting value
         SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
         ExtractLocationEntityData extractLocation = new ExtractLocationEntityData();
 
@@ -58,20 +60,6 @@ namespace FileTransform.FileProcessing
             return locations.ToDictionary(loc => loc.location_id);
         }
 
-
-        /// <summary>
-        /// Retrieves the latest file from the specified directory based on last modified date.
-        /// </summary>
-        /// <param name="directoryPath">The directory to search for files.</param>
-        /// <returns>The path to the latest file, or null if no files are found.</returns>
-        private static string GetLatestFile(string directoryPath)
-        {
-            var directoryInfo = new DirectoryInfo(directoryPath);
-            var files = directoryInfo.GetFiles();
-
-            // Return the file with the most recent LastWriteTime, or null if no files are found
-            return files.OrderByDescending(f => f.LastWriteTime).FirstOrDefault()?.FullName;
-        }
 
         public void GenerateManhattanPunchXML(IEnumerable<ShiftGroup> groupedTimeClockData)
         {
@@ -121,7 +109,7 @@ namespace FileTransform.FileProcessing
 
                         // Generate file name based on ManhattanWarehouseId
                         string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                        string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, 1);
+                        string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, insertBatchId);
                         string fullFilePath = Path.Combine(outputPath, fileName);
 
                         // Save the XML to a file
@@ -149,7 +137,7 @@ namespace FileTransform.FileProcessing
             root.AppendChild(header);
 
             header.AppendChild(CreateElement(xmlDoc, "Source", "Host"));
-            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT23095"));
+            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT"+ insertBatchId));
             header.AppendChild(CreateElement(xmlDoc, "Message_Type", "TAS"));
             header.AppendChild(CreateElement(xmlDoc, "Company_ID", "01"));
             header.AppendChild(CreateElement(xmlDoc, "Msg_Locale", "English (United States)"));
@@ -392,7 +380,7 @@ namespace FileTransform.FileProcessing
 
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync();
+                connection.Open();
 
                 var query = @"
                             WITH CurrentRecords AS (
@@ -506,6 +494,16 @@ namespace FileTransform.FileProcessing
                     resetCommand.ExecuteNonQuery();
                 }
 
+               
+                using (var getBatchIdCommand = new SqlCommand("SELECT MAX(INSERT_BATCH_ID) FROM legion_time_clock_change_fact", connection))
+                {
+                    var result = getBatchIdCommand.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        insertBatchId = Convert.ToInt32(result) + 1; // Increment last batch ID
+                    }
+                }
+
                 SqlTransaction transaction = connection.BeginTransaction();
 
                 try
@@ -607,21 +605,22 @@ namespace FileTransform.FileProcessing
                                     command.Parameters.Clear();
                                     command.Parameters.AddWithValue("@TimeClockChangeId", parts[0]?.Trim());
                                     command.Parameters.AddWithValue("@LocationId", parts[1]?.Trim());
-                                    var locationPart = parts[2]?.Trim();
+                                    command.Parameters.AddWithValue("@LocationExternalId", parts[2]?.Trim());
+                                    //var locationPart = parts[2]?.Trim();
 
-                                    if (int.TryParse(locationPart, out int directLocationId))
-                                    {
-                                        // If it's purely numeric, use it as is
-                                        command.Parameters.AddWithValue("@LocationExternalId", directLocationId);
-                                    }
-                                    else
-                                    {
-                                        // If it contains _XX, extract digits before _
-                                        var match = Regex.Match(locationPart, @"^(\d+)_([A-Z]{2})$");
-                                        int? locationExternalId = match.Success ? int.Parse(match.Groups[1].Value) : (int?)null;
+                                    //if (int.TryParse(locationPart, out int directLocationId))
+                                    //{
+                                    //    // If it's purely numeric, use it as is
+                                    //    command.Parameters.AddWithValue("@LocationExternalId", directLocationId);
+                                    //}
+                                    //else
+                                    //{
+                                    //    // If it contains _XX, extract digits before _
+                                    //    var match = Regex.Match(locationPart, @"^(\d+)_([A-Z]{2})$");
+                                    //    int? locationExternalId = match.Success ? int.Parse(match.Groups[1].Value) : (int?)null;
 
-                                        command.Parameters.AddWithValue("@LocationExternalId", (object?)locationExternalId ?? DBNull.Value);
-                                    }
+                                    //    command.Parameters.AddWithValue("@LocationExternalId", (object?)locationExternalId ?? DBNull.Value);
+                                    //}
                                     command.Parameters.AddWithValue("@LastModifiedDt", DateTime.Parse(parts[3], CultureInfo.InvariantCulture));
                                     command.Parameters.AddWithValue("@LastModifiedByEmployeeId", parts[4]?.Trim());
                                     command.Parameters.AddWithValue("@LastModifiedByExternalEmployeeId", parts[5]?.Trim());
@@ -649,7 +648,7 @@ namespace FileTransform.FileProcessing
                                     command.Parameters.AddWithValue("@ClockNoteAfterChange", parts[23]?.Trim());
                                     command.Parameters.AddWithValue("@EventType", parts[24]?.Trim());
                                     command.Parameters.AddWithValue("@IsCurrent", 1);
-                                    command.Parameters.AddWithValue("@InsertBatchId", Guid.NewGuid().ToString());
+                                    command.Parameters.AddWithValue("@InsertBatchId", insertBatchId);
                                     command.Parameters.AddWithValue("@InsertLoadDt", DateTime.UtcNow);
 
                                     command.ExecuteNonQuery();
