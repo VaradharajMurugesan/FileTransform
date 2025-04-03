@@ -1,0 +1,7 @@
+2025-04-02 11:06:54.3406 [DEBUG] Application Starting 
+2025-04-02 11:06:54.6181 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-04-02 11:07:01.1372 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net 
+2025-04-02 11:07:01.1372 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-04-02 11:07:01.1372 [INFO] clientId.................................. ce531e70-9d35-4470-a50d-77bb184177cf 
+2025-04-02 11:07:01.1372 [INFO] clientSecret................................. Testing 
+2025-04-02 11:07:02.1894 [INFO] Before calling the secret from Key Vault... 

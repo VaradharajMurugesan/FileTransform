@@ -1,0 +1,662 @@
+2025-03-27 15:05:42.5131 [DEBUG] Application Starting 
+2025-03-27 15:05:42.6703 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-27 15:06:06.8222 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:35:47 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:35:47 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretAsync(SecretClient client, String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 134
+2025-03-27 15:06:07.7877 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:35:47 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:35:47 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretAsync(SecretClient client, String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 141
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretsAndSetConnectionStringAsync(String vaultUrl, String tenantId, String clientId, String clientSecret) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 101
+2025-03-27 15:06:08.1526 [ERROR] Failed to reprocess D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/FailedFiles\TimeClockChangeEntity-2024-308-2024-342_20250327_150243_20250327_150608.csv System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.LoadLocationMapping() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 149
+   at FileTransform.FileProcessing.ManhattanPunchProcessor..ctor(JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 81
+   at FileTransform.FileProcessing.CsvFileProcessorFactory.GetProcessor(String processortype, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\CsvFileProcessorFactory.cs:line 33
+   at Program.ProcessReprocessingFilesAsync(IFileTransferClient fileTransferClient, String processorType, String reprocessingFolder, String processedFolder, String failedFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Program.cs:line 221
+2025-03-27 15:06:08.1526 [INFO] ERROR: The ConnectionString property has not been initialized. - moved to FailedFiles. 
+2025-03-27 15:06:17.6933 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-27 15:06:26.3098 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-27 15:06:26.3247 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-27 15:06:31.9120 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:36:23 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:36:23 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretAsync(SecretClient client, String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 134
+2025-03-27 15:06:32.2158 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:36:23 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 09:36:23 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretAsync(SecretClient client, String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 141
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.GetSecretsAndSetConnectionStringAsync(String vaultUrl, String tenantId, String clientId, String clientSecret) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 101
+2025-03-27 15:06:32.3161 [ERROR] Failed to process D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ReprocessFiles\TimeClockChangeEntity-2024-308-2024-342_20250327_150632.csv:  System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.LoadLocationMapping() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 149
+   at FileTransform.FileProcessing.ManhattanPunchProcessor..ctor(JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 81
+   at FileTransform.FileProcessing.CsvFileProcessorFactory.GetProcessor(String processortype, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\CsvFileProcessorFactory.cs:line 33
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Program.cs:line 161
+2025-03-27 15:06:32.3161 [INFO] ERROR: The ConnectionString property has not been initialized. - moved to ReprocessFiles. 
+2025-03-27 15:06:32.3182 [ERROR] Exception occured inside the module FetchAndProcessFilesAsync System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at System.Data.SqlClient.SqlConnection.PermissionDemand()
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at FileTransform.FileProcessing.ManhattanPunchProcessor.LoadLocationMapping() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 149
+   at FileTransform.FileProcessing.ManhattanPunchProcessor..ctor(JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\ManhattanPunchProcessor.cs:line 81
+   at FileTransform.FileProcessing.CsvFileProcessorFactory.GetProcessor(String processortype, JObject clientSettings) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\FileProcessing\CsvFileProcessorFactory.cs:line 33
+   at Program.FetchAndProcessFilesAsync(IFileTransferClient fileTransferClient, String processorType, String processedFolder, String reprocessingFolder, String outputFolder, String decryptedFolderOutput, JObject clientSettings, String fileNameStartsWith) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Program.cs:line 161
+2025-03-27 15:06:32.3182 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-27 15:06:32.3182 [INFO] Application Completed Successfully 
+2025-03-27 20:59:56.5824 [DEBUG] Application Starting 
+2025-03-27 20:59:56.7516 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-27 21:01:03.7919 [DEBUG] Application Starting 
+2025-03-27 21:01:03.9507 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-27 21:01:20.5589 [ERROR] Failed to retrieve secret fb-legion-sftp-uat-passwd from Key Vault. Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:31:12 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.Services.KeyVaultService.GetSecretAsync(String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 84
+2025-03-27 21:01:26.4998 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:31:12 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:31:12 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.Services.KeyVaultService.GetSecretAsync(String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 84
+   at FileTransform.Services.KeyVaultService.GetSFTPPasswordAsync() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 57
+2025-03-27 21:01:31.3103 [ERROR] An error occurred while downloading the file: Permission denied (password). System.Exception: An error occurred while downloading the file: Permission denied (password).
+2025-03-27 21:01:31.3103 [ERROR] No valid file was downloaded for processing. System.Exception: No valid file was downloaded for processing.
+2025-03-27 21:01:31.3103 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-27 21:01:31.3103 [INFO] Application Completed Successfully 
+2025-03-27 21:06:59.6122 [DEBUG] Application Starting 
+2025-03-27 21:06:59.7511 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-27 21:07:11.0426 [ERROR] Failed to retrieve secret fb-legion-sftp-uat-passwd from Key Vault. Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:37:03 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.Services.KeyVaultService.GetSecretAsync(String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 84
+2025-03-27 21:07:14.9110 [ERROR] Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:37:03 GMT
+Content-Type: text/html
+Content-Length: 1245
+ Azure.RequestFailedException: Service request failed.
+Status: 404 (Not Found)
+
+Content:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>404 - File or directory not found.</title>
+<style type="text/css">
+<!--
+body{margin:0;font-size:.7em;font-family:Verdana, Arial, Helvetica, sans-serif;background:#EEEEEE;}
+fieldset{padding:0 15px 10px 15px;} 
+h1{font-size:2.4em;margin:0;color:#FFF;}
+h2{font-size:1.7em;margin:0;color:#CC0000;} 
+h3{font-size:1.2em;margin:10px 0 0 0;color:#000000;} 
+#header{width:96%;margin:0 0 0 0;padding:6px 2% 6px 2%;font-family:"trebuchet MS", Verdana, sans-serif;color:#FFF;
+background-color:#555555;}
+#content{margin:0 0 0 2%;position:relative;}
+.content-container{background:#FFF;width:96%;margin-top:8px;padding:10px;position:relative;}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>Server Error</h1></div>
+<div id="content">
+ <div class="content-container"><fieldset>
+  <h2>404 - File or directory not found.</h2>
+  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>
+ </fieldset></div>
+</div>
+</body>
+</html>
+
+
+Headers:
+X-Content-Type-Options: REDACTED
+Strict-Transport-Security: REDACTED
+Date: Thu, 27 Mar 2025 15:37:03 GMT
+Content-Type: text/html
+Content-Length: 1245
+
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync(Request request, CancellationToken cancellationToken)
+   at Azure.Security.KeyVault.KeyVaultPipeline.SendRequestAsync[TResult](RequestMethod method, Func`1 resultFactory, CancellationToken cancellationToken, String[] path)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.Services.KeyVaultService.GetSecretAsync(String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 84
+   at FileTransform.Services.KeyVaultService.GetSFTPPasswordAsync() in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 57
+2025-03-27 21:07:19.9343 [ERROR] An error occurred while downloading the file: Permission denied (password). System.Exception: An error occurred while downloading the file: Permission denied (password).
+2025-03-27 21:07:19.9343 [ERROR] No valid file was downloaded for processing. System.Exception: No valid file was downloaded for processing.
+2025-03-27 21:07:19.9343 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-27 21:07:19.9343 [INFO] Application Completed Successfully 

@@ -6,6 +6,7 @@ using FileTransform.Helpers;
 using FileTransform.Logging;
 using FileTransform.Decryption;
 using NLog;
+using FileTransform.Services;
 using NLog.Config;
 using NLog.Targets;
 using System;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 class Program
 {
@@ -68,7 +70,42 @@ class Program
                 string host = clientSettings["FTPSettings"]["Host"].ToString();
                 int port = (int)clientSettings["FTPSettings"]["Port"];
                 string username = clientSettings["FTPSettings"]["Username"].ToString();
-                string password = clientSettings["FTPSettings"]["Password"].ToString();
+                string password = string.Empty;
+
+                string vaultUrl = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_URL"]?.ToString() ?? string.Empty;
+                string tenantId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_TENANT_ID"]?.ToString() ?? string.Empty;
+                string clientId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_CLIENT_ID"]?.ToString() ?? string.Empty;
+                string clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_CLIENT_SECRET") ?? string.Empty;
+
+                if (string.IsNullOrEmpty(vaultUrl) ||
+                    string.IsNullOrEmpty(tenantId) ||
+                    string.IsNullOrEmpty(clientId) ||
+                    string.IsNullOrEmpty(clientSecret))
+                {
+                    var ex = new InvalidOperationException("Azure Key vault variables are missing. Please set them.");
+                    LoggerObserver.Error(ex, ex.Message);
+                    throw ex;
+                }
+                try
+                {
+                    // Use the KeyVaultService in your code
+                    var keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
+                    string keyVault_password = await keyVaultService.GetSFTPPasswordAsync(clientSettings);
+                    if (!string.IsNullOrEmpty(keyVault_password))
+                    {
+                        password = keyVault_password;
+                    }
+                    else
+                    {
+                        var ex = new InvalidOperationException("Password for SFTP connection retrieved from Key Vault is not valid");
+                        LoggerObserver.Error(ex, ex.Message);
+                        throw ex;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LoggerObserver.Error(ex, ex.Message);
+                }
 
                 // Extract folder paths
                 string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());

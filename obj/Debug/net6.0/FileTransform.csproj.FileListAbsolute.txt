@@ -5,6 +5,7 @@ D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\FileTra
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\FileTransform.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\FileTransform.pdb
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\CsvHelper.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Dapper.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\DidiSoft.BouncyCastle.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\DidiSoft.Pgp.Mail.dll
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\DidiSoft.Pgp.Net.LdapClient.dll
@@ -81,4 +82,13 @@ D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\obj\Debug\net6.0\refint\
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\obj\Debug\net6.0\FileTransform.pdb
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\obj\Debug\net6.0\FileTransform.genruntimeconfig.cache
 D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\obj\Debug\net6.0\ref\FileTransform.dll
-D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Dapper.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Azure.Core.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Azure.Identity.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Azure.Security.KeyVault.Secrets.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\System.ClientModel.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\System.Memory.Data.dll
+D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\AppSettings\appsettings.json

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FileTransform.Logging;
 using Renci.SshNet;
 using Renci.SshNet.Common;
+using System.IO.Compression;
 
 namespace FileTransform.Client
 {
@@ -229,6 +230,14 @@ namespace FileTransform.Client
                     sftp.Disconnect();
 
                     LoggerObserver.Info($"Latest file downloaded: {localFilePath}");
+                    if (fileExtension == ".gz")
+                    {
+                        //Extract the .gz file
+                        string extractedFilePath = Path.Combine(Path.GetDirectoryName(localFilePath), Path.GetFileNameWithoutExtension(latestFile.Name));
+                        ExtractGzFile(localFilePath, extractedFilePath);
+
+                        return extractedFilePath;
+                    }
                     return localFilePath;
                 }
             }
@@ -241,6 +250,26 @@ namespace FileTransform.Client
             {
                 LoggerObserver.OnFileFailed($"An error occurred while downloading the file: {ex.Message}");
                 return string.Empty;
+            }
+        }
+
+        private void ExtractGzFile(string gzFilePath, string outputFilePath)
+        {
+            try
+            {
+                using (FileStream originalFileStream = new FileStream(gzFilePath, FileMode.Open, FileAccess.Read))
+                using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
+                using (FileStream decompressedFileStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+                {
+                    decompressionStream.CopyTo(decompressedFileStream);
+                    LoggerObserver.LogFileProcessed($"File has been decompressed to: {outputFilePath}");
+                }
+                File.Delete(gzFilePath);
+                LoggerObserver.LogFileProcessed($"Deleted the .gz file: {gzFilePath}");
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.Error(ex, "Error extracting .gz file.");
             }
         }
 

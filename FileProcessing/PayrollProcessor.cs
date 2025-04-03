@@ -19,34 +19,35 @@ namespace FileTransform.FileProcessing
         // Global list of excluded roles
         private static readonly List<string> ExcludedRoles = new List<string>
         {
-            "Store Guard",
-            "Store Asset Protection",
-            "Remodel",
-            "Setup",
-            "Inventory",
-            "Pre-Open Recruiting",
-            "Store Meeting",
-            "Training - Manager New Hire",
-            "Training - Manager Promotion",
-            "Training - Services",
-            "Training - Harassment",
-            "Training - AP",
-            "TSM",
-            "Training - Other",
-            "Special Project"
+            "storeAssetProtection",
+            "remodel",
+            "setup",
+            "inventory",
+            "pre_openRecruiting",
+            "storeMeeting",
+            "training_ManagerNewHire",
+            "training_ManagerPromotion",
+            "training_Services",
+            "training_Harassment",
+            "training_Ap",
+            "tsm",
+            "training_Other",
+            "specialProject"
         };
 
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<string, EmployeeHrData> employeeHrMapping;
         private Dictionary<string, List<PaycodeData>> paycodeDict;
-        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
+        private readonly SFTPFileExtract _sftpFileExtract;  // Make it a private readonly field
         ExtractEmployeeEntityData extractEmployeeEntityData = new ExtractEmployeeEntityData();
 
         public PayrollFileProcessor(JObject clientSettings)
         {
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
-            string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
-            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
+            string remoteMappingFilePath = clientSettings["Folders"]["remoteEmployeeEntityPath"]?.ToString() ?? string.Empty;
+            // Initialize the SFTPFileExtract instance here
+            _sftpFileExtract = new SFTPFileExtract(clientSettings);
+            string employeeEntityMappingPath = _sftpFileExtract.DownloadAndExtractFile(remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
             // Load employee HR mapping from Excel (grouped by employee ID now)
             employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
             paycodeDict = LoadPaycodeMappingFromXlsx("LegionPayCodes.xlsx");

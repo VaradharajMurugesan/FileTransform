@@ -19,7 +19,7 @@ namespace FileTransform.FileProcessing
         private Dictionary<string, TimeZoneInfo> timeZoneCache;
         private Dictionary<string, EmployeeHrData> employeeHrMapping;
         ExtractEmployeeEntityData extractEmployeeEntityData = new ExtractEmployeeEntityData();
-        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
+        private readonly SFTPFileExtract _sftpFileExtract;  // Make it a private readonly field
 
         public PunchExportProcessor(JObject clientSettings)
         {
@@ -31,8 +31,10 @@ namespace FileTransform.FileProcessing
             timeZoneCache = new Dictionary<string, TimeZoneInfo>();
 
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
-            string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
-            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
+            string remoteMappingFilePath = clientSettings["Folders"]["remoteEmployeeEntityPath"]?.ToString() ?? string.Empty;
+            // Initialize the SFTPFileExtract instance here
+            _sftpFileExtract = new SFTPFileExtract(clientSettings);
+            string employeeEntityMappingPath = _sftpFileExtract.DownloadAndExtractFile(remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
 
             // Load employee HR mapping from CSV
             employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);

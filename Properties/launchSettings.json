@@ -2,7 +2,7 @@
   "profiles": {
     "FileTransform": {
       "commandName": "Project",
-      "commandLineArgs": "punchexport 2025.03.05 PunchExport"
+      "commandLineArgs": "manhattanpunch TimeClockChangeEntity"
     }
   }
 }

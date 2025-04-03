@@ -1,0 +1,210 @@
+2025-03-07 14:25:20.6876 [DEBUG] Application Starting 
+2025-03-07 14:25:20.9034 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 14:25:28.2678 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:25:31.5464 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:25:31.5464 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:25:42.2866 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 14:25:42.6087 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 14:25:42.6092 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 14:25:42.6733 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 2:25:42 PM 
+2025-03-07 14:25:46.6017 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 14:25:46.8946 [INFO] Generated XML file: CICO_006_20250307142546_40000.xml 
+2025-03-07 14:25:46.8946 [INFO] Generated XML file: CICO_004_20250307142546_40000.xml 
+2025-03-07 14:25:46.8946 [INFO] Generated XML file: CICO_0120_20250307142546_40000.xml 
+2025-03-07 14:25:46.8946 [INFO] Generated XML file: CICO_003_20250307142546_40000.xml 
+2025-03-07 14:25:46.8946 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 2:25:46 PM 
+2025-03-07 14:25:46.8946 [INFO] Time taken to process the file: 4.23 seconds. 
+2025-03-07 14:25:46.8946 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:25:46.9068 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_142546.csv 
+2025-03-07 14:25:46.9068 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 14:25:46.9068 [INFO] Application Completed Successfully 
+2025-03-07 14:34:08.7484 [DEBUG] Application Starting 
+2025-03-07 14:34:08.9729 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 14:34:17.8874 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:34:21.1056 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:34:21.1104 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:34:30.6319 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 14:34:30.9463 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 14:34:30.9463 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 14:34:31.0068 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 2:34:31 PM 
+2025-03-07 14:34:34.2055 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 14:34:34.3399 [INFO] Generated XML file: CICO_006_20250307143434_40000.xml 
+2025-03-07 14:34:34.3399 [INFO] Generated XML file: CICO_004_20250307143434_40000.xml 
+2025-03-07 14:34:34.3399 [INFO] Generated XML file: CICO_0120_20250307143434_40000.xml 
+2025-03-07 14:34:34.3399 [INFO] Generated XML file: CICO_003_20250307143434_40000.xml 
+2025-03-07 14:34:34.3399 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 2:34:34 PM 
+2025-03-07 14:34:34.3399 [INFO] Time taken to process the file: 3.34 seconds. 
+2025-03-07 14:34:34.3399 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:34:34.3475 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_143434.csv 
+2025-03-07 14:34:34.3475 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 14:34:34.3475 [INFO] Application Completed Successfully 
+2025-03-07 14:42:40.7470 [DEBUG] Application Starting 
+2025-03-07 14:42:40.8434 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 14:42:53.1729 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:42:56.5959 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 14:42:56.5959 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:13:13.0376 [DEBUG] Application Starting 
+2025-03-07 19:13:13.5199 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 19:13:22.5213 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:13:26.0224 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:13:26.0224 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:14:09.7976 [DEBUG] Application Starting 
+2025-03-07 19:14:09.9778 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 19:14:18.7396 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:14:22.0858 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:14:22.0904 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:14:31.7399 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 19:14:31.7575 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 19:14:31.7575 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 19:14:32.1532 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 7:14:32 PM 
+2025-03-07 19:14:35.8889 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 19:14:36.0972 [INFO] Generated XML file: CICO_006_20250307191436_40000.xml 
+2025-03-07 19:14:36.0972 [INFO] Generated XML file: CICO_004_20250307191436_40000.xml 
+2025-03-07 19:14:36.0972 [INFO] Generated XML file: CICO_0120_20250307191436_40000.xml 
+2025-03-07 19:14:36.0972 [INFO] Generated XML file: CICO_003_20250307191436_40000.xml 
+2025-03-07 19:14:36.0972 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 7:14:36 PM 
+2025-03-07 19:14:36.0972 [INFO] Time taken to process the file: 3.95 seconds. 
+2025-03-07 19:14:36.0972 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:14:36.1140 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_191436.csv 
+2025-03-07 19:14:36.1140 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 19:14:36.1140 [INFO] Application Completed Successfully 
+2025-03-07 19:38:19.6415 [DEBUG] Application Starting 
+2025-03-07 19:38:19.7325 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 19:38:27.2208 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:38:30.6606 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:38:30.6743 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:39:46.2407 [DEBUG] Application Starting 
+2025-03-07 19:39:46.3777 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 19:39:53.9095 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:39:57.3175 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:39:57.3175 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:40:09.1868 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 19:40:09.2136 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 19:40:09.2148 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 19:40:09.6569 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 7:40:09 PM 
+2025-03-07 19:40:12.8994 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 19:40:13.0622 [INFO] Generated XML file: CICO_006_20250307194013_40000.xml 
+2025-03-07 19:40:13.0622 [INFO] Generated XML file: CICO_004_20250307194013_40000.xml 
+2025-03-07 19:40:13.0622 [INFO] Generated XML file: CICO_0120_20250307194013_40000.xml 
+2025-03-07 19:40:13.0622 [INFO] Generated XML file: CICO_003_20250307194013_40000.xml 
+2025-03-07 19:40:13.0622 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 7:40:13 PM 
+2025-03-07 19:40:13.0622 [INFO] Time taken to process the file: 3.41 seconds. 
+2025-03-07 19:40:13.0622 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 19:40:13.0750 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_194013.csv 
+2025-03-07 19:40:13.0750 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 19:40:13.0750 [INFO] Application Completed Successfully 
+2025-03-07 21:44:01.4099 [DEBUG] Application Starting 
+2025-03-07 21:44:11.7690 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 21:44:30.6128 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:44:33.9912 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:44:33.9912 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:44:45.1377 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:44:45.1592 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 21:44:45.1592 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:44:45.5183 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 9:44:45 PM 
+2025-03-07 21:44:49.1268 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 21:45:01.1302 [ERROR] Failed to create SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.Exists(String path)
+   at FileTransform.SFTPExtract.SFTPFileExtract.EnsureDirectoryExists(String directoryPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 129
+2025-03-07 21:45:14.1327 [ERROR] Failed to upload XML to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307214501_40000.xml Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.InternalUploadFile(Stream input, String path, Flags flags, SftpUploadAsyncResult asyncResult, Action`1 uploadCallback)
+   at Renci.SshNet.SftpClient.UploadFile(Stream input, String path, Action`1 uploadCallback)
+   at FileTransform.SFTPExtract.SFTPFileExtract.UploadXmlToSftp(XmlDocument xmlDoc, String sftpFilePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 157
+2025-03-07 21:45:14.1327 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307214501_40000.xml 
+2025-03-07 21:45:15.4273 [ERROR] Failed to create SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.Exists(String path)
+   at FileTransform.SFTPExtract.SFTPFileExtract.EnsureDirectoryExists(String directoryPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 129
+2025-03-07 21:45:16.2138 [ERROR] Failed to upload XML to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307214515_40000.xml Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.InternalUploadFile(Stream input, String path, Flags flags, SftpUploadAsyncResult asyncResult, Action`1 uploadCallback)
+   at Renci.SshNet.SftpClient.UploadFile(Stream input, String path, Action`1 uploadCallback)
+   at FileTransform.SFTPExtract.SFTPFileExtract.UploadXmlToSftp(XmlDocument xmlDoc, String sftpFilePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 157
+2025-03-07 21:45:16.2138 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307214515_40000.xml 
+2025-03-07 21:45:16.9980 [ERROR] Failed to create SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/ Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.Exists(String path)
+   at FileTransform.SFTPExtract.SFTPFileExtract.EnsureDirectoryExists(String directoryPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 129
+2025-03-07 21:45:17.7368 [ERROR] Failed to upload XML to SFTP: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307214516_40000.xml Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.InternalUploadFile(Stream input, String path, Flags flags, SftpUploadAsyncResult asyncResult, Action`1 uploadCallback)
+   at Renci.SshNet.SftpClient.UploadFile(Stream input, String path, Action`1 uploadCallback)
+   at FileTransform.SFTPExtract.SFTPFileExtract.UploadXmlToSftp(XmlDocument xmlDoc, String sftpFilePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 157
+2025-03-07 21:45:17.7368 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307214516_40000.xml 
+2025-03-07 21:45:18.5256 [ERROR] Failed to create SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.Exists(String path)
+   at FileTransform.SFTPExtract.SFTPFileExtract.EnsureDirectoryExists(String directoryPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 129
+2025-03-07 21:45:19.2514 [ERROR] Failed to upload XML to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307214518_40000.xml Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.InternalUploadFile(Stream input, String path, Flags flags, SftpUploadAsyncResult asyncResult, Action`1 uploadCallback)
+   at Renci.SshNet.SftpClient.UploadFile(Stream input, String path, Action`1 uploadCallback)
+   at FileTransform.SFTPExtract.SFTPFileExtract.UploadXmlToSftp(XmlDocument xmlDoc, String sftpFilePath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 157
+2025-03-07 21:45:19.2514 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307214518_40000.xml 
+2025-03-07 21:45:19.2514 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 9:45:19 PM 
+2025-03-07 21:45:19.2604 [INFO] Time taken to process the file: 33.74 seconds. 
+2025-03-07 21:45:19.2604 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:45:19.2883 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_214519.csv 
+2025-03-07 21:45:21.8288 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 21:45:21.8288 [INFO] Application Completed Successfully 
+2025-03-07 21:47:02.4449 [DEBUG] Application Starting 
+2025-03-07 21:47:02.5200 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 21:47:11.4138 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:47:15.7827 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:47:15.7827 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:47:25.8044 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:47:25.8244 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 21:47:25.8244 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:47:26.3000 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 9:47:26 PM 
+2025-03-07 21:47:29.6824 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 21:47:34.2662 [ERROR] Failed to create SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL Renci.SshNet.Common.SshConnectionException: Client not connected.
+   at Renci.SshNet.SftpClient.Exists(String path)
+   at FileTransform.SFTPExtract.SFTPFileExtract.EnsureDirectoryExists(String directoryPath) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\SFTPExtract\SFTPFileExtract.cs:line 129
+2025-03-07 21:50:29.2766 [DEBUG] Application Starting 
+2025-03-07 21:50:29.4488 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 21:50:38.2055 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:50:41.5056 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:50:41.5107 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:50:51.5734 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:50:51.6036 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 21:50:51.6036 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 21:50:52.0825 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 9:50:52 PM 
+2025-03-07 21:50:55.7126 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 21:51:04.3273 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL 
+2025-03-07 21:51:23.9211 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307215104_40000.xml 
+2025-03-07 21:51:24.2158 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307215104_40000.xml 
+2025-03-07 21:51:35.3542 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL 
+2025-03-07 21:51:49.0016 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307215135_40000.xml 
+2025-03-07 21:51:49.2829 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307215135_40000.xml 
+2025-03-07 21:52:04.1428 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307215157_40000.xml 
+2025-03-07 21:52:04.4394 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307215157_40000.xml 
+2025-03-07 21:52:13.3447 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL 
+2025-03-07 21:52:20.6817 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307215213_40000.xml 
+2025-03-07 21:52:20.9902 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307215213_40000.xml 
+2025-03-07 21:52:20.9902 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 9:52:20 PM 
+2025-03-07 21:52:21.0232 [INFO] Time taken to process the file: 88.91 seconds. 
+2025-03-07 21:52:21.0232 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 21:52:21.0416 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_215221.csv 
+2025-03-07 21:52:21.0416 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 21:52:21.0416 [INFO] Application Completed Successfully 
+2025-03-07 22:26:01.9802 [DEBUG] Application Starting 
+2025-03-07 22:26:02.6083 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-07 22:26:12.2638 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/manhattan/TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 22:26:15.4911 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 22:26:15.5106 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 22:26:25.6542 [INFO] Downloaded file: LocationEntity-2025-47-2025-81.csv.gz to D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 22:26:25.6920 [INFO] File has been decompressed to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv 
+2025-03-07 22:26:25.6920 [INFO] Deleted the .gz file: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/Mapping\LocationEntity-2025-47-2025-81.csv.gz 
+2025-03-07 22:26:26.1610 [INFO] Start processing Payroll CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 10:26:26 PM 
+2025-03-07 22:26:30.2635 [INFO] Skipped 12 records due to missing location_id. Check SkippedRecords.log for details. 
+2025-03-07 22:26:38.6608 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL 
+2025-03-07 22:26:46.8363 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307222638_40000.xml 
+2025-03-07 22:26:47.1288 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCAZ_RETAIL/CICO_006_20250307222638_40000.xml 
+2025-03-07 22:26:55.5567 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL 
+2025-03-07 22:27:03.3587 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307222655_40000.xml 
+2025-03-07 22:27:03.6340 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCGA_RETAIL/CICO_004_20250307222655_40000.xml 
+2025-03-07 22:27:17.7599 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307222710_40000.xml 
+2025-03-07 22:27:18.0319 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output//CICO_0120_20250307222710_40000.xml 
+2025-03-07 22:27:26.7747 [INFO] Created SFTP directory: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL 
+2025-03-07 22:27:34.7125 [INFO] Successfully uploaded file: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307222727_40000.xml 
+2025-03-07 22:27:35.0170 [INFO] Uploaded XML file to SFTP: /home/fivebelow-uat/outbox/manhattan_output/SCNJ_RETAIL/CICO_003_20250307222727_40000.xml 
+2025-03-07 22:27:35.0170 [INFO] Finished processing Manhattan punch CSV: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv at 3/7/2025 10:27:35 PM 
+2025-03-07 22:27:35.0170 [INFO] Time taken to process the file: 68.86 seconds. 
+2025-03-07 22:27:35.0170 [INFO] C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-2024-308-2024-342.csv 
+2025-03-07 22:27:35.0347 [INFO] File successfully processed and moved to: D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\bin\Debug\net6.0\ManhattanPunchExport/ProcessedFiles\TimeClockChangeEntity-2024-308-2024-342_20250307_222735.csv 
+2025-03-07 22:27:35.0347 [INFO] Processing completed for processor type: manhattanpunch 
+2025-03-07 22:27:35.0347 [INFO] Application Completed Successfully 

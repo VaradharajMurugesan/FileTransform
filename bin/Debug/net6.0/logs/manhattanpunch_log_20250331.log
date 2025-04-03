@@ -1,0 +1,40 @@
+2025-03-31 15:46:26.4134 [DEBUG] Application Starting 
+2025-03-31 15:46:26.5485 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-31 15:46:42.4402 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net/secrets/Legion-PunchData-DEV/1356057024f34921ab18600da9acbd99 
+2025-03-31 15:46:42.6464 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-03-31 15:46:42.8554 [INFO] clientId.................................. 45aa3f38-5597-4f7e-baab-c589a63cf20b 
+2025-03-31 15:46:43.1120 [INFO] clientSecret................................. Testing 
+2025-03-31 15:46:48.7725 [INFO] Before calling the secret from Key Vault... 
+2025-03-31 15:48:15.0742 [ERROR] Failed to retrieve secret  from Key Vault. System.ArgumentException: Value cannot be an empty string. (Parameter 'name')
+   at Azure.Core.Argument.AssertNotNullOrEmpty(String value, String name)
+   at Azure.Security.KeyVault.Secrets.SecretClient.GetSecretAsync(String name, String version, CancellationToken cancellationToken)
+   at FileTransform.Services.KeyVaultService.GetSecretAsync(String secretName) in D:\Emergere\ConnorsLLC\ConnorsLLC_Project\FileTransform\Services\KeyVaultService.cs:line 94
+2025-03-31 15:48:34.6873 [DEBUG] Application Starting 
+2025-03-31 15:48:34.8237 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-31 15:48:38.5396 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net/secrets/Legion-PunchData-DEV/1356057024f34921ab18600da9acbd99 
+2025-03-31 15:48:38.5396 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-03-31 15:48:38.5396 [INFO] clientId.................................. 45aa3f38-5597-4f7e-baab-c589a63cf20b 
+2025-03-31 15:48:38.5396 [INFO] clientSecret................................. Testing 
+2025-03-31 15:48:38.8560 [INFO] Before calling the secret from Key Vault... 
+2025-03-31 15:49:57.3122 [DEBUG] Application Starting 
+2025-03-31 15:49:57.4462 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-31 15:49:59.3264 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net/secrets/Legion-PunchData-DEV/1356057024f34921ab18600da9acbd99 
+2025-03-31 15:49:59.3264 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-03-31 15:49:59.3264 [INFO] clientId.................................. 45aa3f38-5597-4f7e-baab-c589a63cf20b 
+2025-03-31 15:49:59.3264 [INFO] clientSecret................................. Testing 
+2025-03-31 15:49:59.6382 [INFO] Before calling the secret from Key Vault... 
+2025-03-31 15:50:07.5367 [INFO] Password retrieved for sftp connection..................System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1[System.String,System.Runtime.CompilerServices.IAsyncStateMachine] 
+2025-03-31 16:10:58.9206 [DEBUG] Application Starting 
+2025-03-31 16:10:59.1059 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-31 16:11:04.2512 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net/secrets/Legion-PunchData-DEV/1356057024f34921ab18600da9acbd99 
+2025-03-31 16:11:04.2512 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-03-31 16:11:04.2512 [INFO] clientId.................................. 45aa3f38-5597-4f7e-baab-c589a63cf20b 
+2025-03-31 16:11:04.2512 [INFO] clientSecret................................. Testing 
+2025-03-31 16:11:04.6511 [INFO] Before calling the secret from Key Vault... 
+2025-03-31 16:23:20.2423 [DEBUG] Application Starting 
+2025-03-31 16:23:20.4074 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-03-31 16:23:24.2959 [INFO] Vault URL.............................. https://edp-dev-keyvault.vault.azure.net/secrets/Legion-PunchData-DEV/1356057024f34921ab18600da9acbd99 
+2025-03-31 16:23:24.2959 [INFO] tenantId................................. 7b5043c5-ff30-434b-b66e-f8cf457db68a 
+2025-03-31 16:23:24.2959 [INFO] clientId.................................. 45aa3f38-5597-4f7e-baab-c589a63cf20b 
+2025-03-31 16:23:24.2959 [INFO] clientSecret................................. Testing 
+2025-03-31 16:23:24.6782 [INFO] Before calling the secret from Key Vault... 

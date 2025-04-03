@@ -1,0 +1,34 @@
+<tXML>
+  <Header>
+    <Source>Host</Source>
+    <Batch_ID>BT40000</Batch_ID>
+    <Message_Type>TAS</Message_Type>
+    <Company_ID>01</Company_ID>
+    <Msg_Locale>English (United States)</Msg_Locale>
+  </Header>
+  <Message>
+    <TimeAndAttendance>
+      <TASData>
+        <DeleteClockInRange>
+          <TranNumber>000000001</TranNumber>
+          <Warehouse>0120</Warehouse>
+          <EmployeeUserId>725507</EmployeeUserId>
+          <StartDateForDel>11/06/2024 02:08:30</StartDateForDel>
+          <EndDateForDel>11/06/2024 02:08:30</EndDateForDel>
+        </DeleteClockInRange>
+      </TASData>
+      <TASData>
+        <MergeRange>
+          <TranNumber>000000002</TranNumber>
+          <Warehouse>0120</Warehouse>
+          <EmployeeUserId>725507</EmployeeUserId>
+          <StartDateForMerge>11/06/2024 00:08:30</StartDateForMerge>
+          <EndDateForMerge>11/06/2024 04:08:30</EndDateForMerge>
+          <MergeClockInClockOut>
+            <EmpClockIn>11/06/2024 02:08:30</EmpClockIn>
+          </MergeClockInClockOut>
+        </MergeRange>
+      </TASData>
+    </TimeAndAttendance>
+  </Message>
+</tXML>

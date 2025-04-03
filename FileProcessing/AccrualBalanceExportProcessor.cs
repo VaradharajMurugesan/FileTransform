@@ -22,7 +22,7 @@ namespace FileTransform.FileProcessing
         private Dictionary<string, EmployeeHrData> employeeHrMapping;
         private Dictionary<string, string> accrualMemoCodeMapping;
         private Dictionary<string, List<PaycodeData>> paycodeDict;
-        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
+        private readonly SFTPFileExtract _sftpFileExtract;  // Make it a private readonly field
         ExtractEmployeeEntityData extractEmployeeEntityData = new ExtractEmployeeEntityData();
         private readonly HashSet<string> payrollProcessedFileNumbers;
 
@@ -32,7 +32,9 @@ namespace FileTransform.FileProcessing
             var payroll_clientSettings = ClientSettingsLoader.LoadClientSettings("payroll");
             string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
             string remoteMappingFilePath = clientSettings["Folders"]["remoteEmployeeEntityPath"].ToString();
-            string employeeEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
+            // Initialize the SFTPFileExtract instance here
+            _sftpFileExtract = new SFTPFileExtract(clientSettings);
+            string employeeEntityMappingPath = _sftpFileExtract.DownloadAndExtractFile(remoteMappingFilePath, mappingFilesFolderPath, "EmployeeEntity");
             // Load employee HR mapping from Excel (grouped by employee ID now)
             employeeHrMapping = extractEmployeeEntityData.LoadGroupedEmployeeHrMappingFromCsv(employeeEntityMappingPath);
             accrualMemoCodeMapping = LoadAccrualMemoCodeMappingFromCSV("AccrualMemoCodeMapping.csv");

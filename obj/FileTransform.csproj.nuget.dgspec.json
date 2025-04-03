@@ -51,6 +51,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.13.2, )"
+            },
+            "Azure.Security.KeyVault.Secrets": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[33.0.1, )"
@@ -74,10 +82,6 @@
             "NLog": {
               "target": "Package",
               "version": "[5.3.4, )"
-            },
-            "NLog.Config": {
-              "target": "Package",
-              "version": "[4.7.15, )"
             },
             "NLog.Extensions.Logging": {
               "target": "Package",

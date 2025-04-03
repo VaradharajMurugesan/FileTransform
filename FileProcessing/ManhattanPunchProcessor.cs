@@ -5,6 +5,7 @@ using FileTransform.DataModel;
 using FileTransform.Helpers;
 using FileTransform.Logging;
 using FileTransform.SFTPExtract;
+using FileTransform.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,43 +16,102 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using Dapper;
+using static System.Net.WebRequestMethods;
+using System.IO;
+using System.Configuration;
+using Renci.SshNet;
+
 
 namespace FileTransform.FileProcessing
 {
     internal class ManhattanPunchProcessor : ICsvFileProcessorStrategy
     {
+        private string _connectionString = string.Empty;
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<int, ManhattanLocationData> LocationMapping;
         private Dictionary<string, LocationEntityData> TimeZoneMapping;
         private readonly HashSet<string> payrollProcessedFileNumbers;
         private bool mealBreakFlag = false;
         private string outputFileName = string.Empty;
-        private string outputPath = string.Empty;
+        private string sftpOutPutFolderPath = string.Empty;
+        private int fetchRecordsOlderThanDays = 0;
         // Step 1: Retrieve last used INSERT_BATCH_ID and increment it
-        private int insertBatchId = 40000; // Default starting value
-        SFTPFileExtract sFTPFileExtract = new SFTPFileExtract();
+        private int insertBatchId = 1; // Default starting value
+        private SFTPFileExtract _sftpFileExtract = null;  // Make it a private readonly field
         ExtractLocationEntityData extractLocation = new ExtractLocationEntityData();
 
         public ManhattanPunchProcessor(JObject clientSettings)
         {
+            _connectionString = clientSettings["SQLConnection"]["manhattanDBConnection"]?.ToString() ?? string.Empty;
             var payroll_clientSettings = ClientSettingsLoader.LoadClientSettings("payroll");
-            string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+            
             mealBreakFlag = bool.TryParse(clientSettings["Flags"]["MealBreakRequired"]?.ToString(), out bool flag) && flag;
-            outputPath = clientSettings["Folders"]["outputFolder"]?.ToString() ?? string.Empty;
-            outputFileName = clientSettings["Folders"]["OutputFileFormat"]?.ToString() ?? string.Empty;
-            LocationMapping = LoadLocationMapping();
-            string remoteMappingFilePath = "/home/fivebelow-uat/outbox/extracts";
-            string LocationEntityMappingPath = sFTPFileExtract.DownloadAndExtractFile(clientSettings, remoteMappingFilePath, mappingFilesFolderPath, "LocationEntity");
-            TimeZoneMapping = extractLocation.LoadGroupedLocationMappingFromCsv(LocationEntityMappingPath);
+            // Retrieve the value from appsettings.json and parse it as an integer
+            fetchRecordsOlderThanDays = int.TryParse(clientSettings["Flags"]["DataRetrievalDaysOffset"]?.ToString(), out int days)
+                ? days
+                : 14; // Default value in case of parsing failure
+
+            //SQL Database password
+            GetDBPasswordFromKeyVault(clientSettings);
+
+            
+        }
+
+        public async Task GetDBPasswordFromKeyVault(JObject clientSettings)
+        {
+            string vaultUrl = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_URL"]?.ToString() ?? string.Empty;
+            string tenantId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_TENANT_ID"]?.ToString() ?? string.Empty;
+            string clientId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_CLIENT_ID"]?.ToString() ?? string.Empty;
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_DB_CLIENT_SECRET") ?? string.Empty;
+            if (string.IsNullOrEmpty(vaultUrl) ||
+                string.IsNullOrEmpty(tenantId) ||
+                string.IsNullOrEmpty(clientId) ||
+                string.IsNullOrEmpty(clientSecret))
+            {
+                var ex = new InvalidOperationException("Azure Key vault variables are missing. Please set them.");
+                LoggerObserver.Error(ex, ex.Message);
+                throw ex;
+            }
+
+            try
+            {
+                // Use the KeyVaultService in your code
+                var keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
+                var connectionString = await keyVaultService.GetConnectionStringAsync(clientSettings);
+                if (connectionString != null)
+                {
+                    _connectionString = connectionString.ToString();
+                }
+                else
+                {
+                    var ex = new InvalidOperationException("Database Connection string is not Valid.");
+                    LoggerObserver.Error(ex, "Connection string is either empty or not formed properly");
+                    throw ex;
+                }
+                string mappingFilesFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+                sftpOutPutFolderPath = clientSettings["Folders"]["sftpOutPutFolderPath"]?.ToString() ?? string.Empty;
+                outputFileName = clientSettings["Folders"]["OutputFileFormat"]?.ToString() ?? string.Empty;
+                LocationMapping = LoadLocationMapping();
+                string remoteMappingFilePath = clientSettings["Folders"]["remoteLocationEntityPath"]?.ToString() ?? string.Empty;
+                // 🔹 Initialize the SFTPFileExtract instance here
+                _sftpFileExtract = new SFTPFileExtract(clientSettings);
+                string LocationEntityMappingPath = _sftpFileExtract.DownloadAndExtractFile(remoteMappingFilePath, mappingFilesFolderPath, "LocationEntity");
+                TimeZoneMapping = extractLocation.LoadGroupedLocationMappingFromCsv(LocationEntityMappingPath);
+
+            }
+            catch (Exception ex)
+            {
+                LoggerObserver.Error(ex, ex.Message);
+            }
+
         }
 
         public Dictionary<int, ManhattanLocationData> LoadLocationMapping()
         {
-            string connectionString = "Server=ECS-VARADHA;Database=ManhattanPunchDB;User Id=manhattan_user;Password=Summer-01;";
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT location_id, warehouse_id FROM warehouse_location"; // Adjust as needed
+            string query = "SELECT location_id, warehouse_id, shipcenter_location FROM warehouse_location"; // Adjust as needed
 
             // Use Dapper to execute the query and map the results
             var locations = connection.Query<ManhattanLocationData>(query);
@@ -72,6 +132,31 @@ namespace FileTransform.FileProcessing
                 {
                     try
                     {
+                        string warehouseId = warehouseGroup.Key;
+
+                        // Step 1: Find the matching `location_id` for this `warehouse_id`
+                        var locationEntry = LocationMapping.Values.FirstOrDefault(loc => loc.warehouse_id == warehouseId);
+
+                        if (locationEntry == null)
+                        {
+                            LoggerObserver.Info($"Skipping WarehouseID {warehouseId} as no location_id is mapped.");
+                            continue;
+                        }
+                        // Fetch shipcenter location for this warehouse ID
+                        if (!LocationMapping.TryGetValue(locationEntry.location_id, out ManhattanLocationData locationData))
+                        {
+                            LoggerObserver.Info($"Skipping WarehouseID {warehouseGroup.Key} as no shipcenter location is mapped.");
+                            continue;
+                        }
+
+                        string shipcenterFolder = locationData.shipcenter_location;
+
+                        // Construct full SFTP subfolder path
+                        string sftpSubfolderPath = $"{sftpOutPutFolderPath}/{shipcenterFolder}";
+
+                        // Ensure the subfolder exists
+                        _sftpFileExtract.Ensure_FiveBelowDirectoryExists(sftpSubfolderPath);
+
                         // Create a new XML Document for each warehouse
                         XmlDocument xmlDoc = new XmlDocument();
                         XmlElement root = xmlDoc.CreateElement("tXML");
@@ -109,12 +194,13 @@ namespace FileTransform.FileProcessing
 
                         // Generate file name based on ManhattanWarehouseId
                         string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                        string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, insertBatchId);
-                        string fullFilePath = Path.Combine(outputPath, fileName);
+                        string fileName = string.Format(outputFileName, warehouseGroup.Key, timestamp, insertBatchId.ToString("D5"));
+                        string sftpFilePath = $"{sftpSubfolderPath}/{fileName}";
 
-                        // Save the XML to a file
-                        xmlDoc.Save(fullFilePath);
-                        LoggerObserver.LogFileProcessed($"Generated XML file: {fileName}");
+                        // Upload the XML document to SFTP
+                        _sftpFileExtract.UploadXmlToSftp(xmlDoc, sftpFilePath);
+
+                        LoggerObserver.LogFileProcessed($"Uploaded XML file to SFTP: {sftpFilePath}");
                     }
                     catch (Exception ex)
                     {
@@ -128,7 +214,7 @@ namespace FileTransform.FileProcessing
             }
         }
 
-
+        
 
         // Helper method to add header elements
         private void AddHeaderElements(XmlDocument xmlDoc, XmlElement root)
@@ -137,7 +223,7 @@ namespace FileTransform.FileProcessing
             root.AppendChild(header);
 
             header.AppendChild(CreateElement(xmlDoc, "Source", "Host"));
-            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT"+ insertBatchId));
+            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT"+ insertBatchId.ToString("D5")));
             header.AppendChild(CreateElement(xmlDoc, "Message_Type", "TAS"));
             header.AppendChild(CreateElement(xmlDoc, "Company_ID", "01"));
             header.AppendChild(CreateElement(xmlDoc, "Msg_Locale", "English (United States)"));
@@ -321,7 +407,7 @@ namespace FileTransform.FileProcessing
             try
             {
                 // Validate if the source file exists
-                if (!File.Exists(filePath))
+                if (!System.IO.File.Exists(filePath))
                 {
                     throw new FileNotFoundException($"The file does not exist: {filePath}");
                 }
@@ -374,11 +460,10 @@ namespace FileTransform.FileProcessing
 
         private async Task<IEnumerable<IGrouping<object, ClockRecord>>> GetGroupedRecordsFromDatabaseAsync()
         {
-            string connectionString = "Server=ECS-VARADHA;Database=ManhattanPunchDB;User Id=manhattan_user;Password=Summer-01;";
 
             IEnumerable<IGrouping<object, ClockRecord>> groupedRecords = null;
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -398,7 +483,7 @@ namespace FileTransform.FileProcessing
                                     FROM CurrentRecords cr
                                     INNER JOIN OldRecords orr
                                         ON cr.emp_external_id = orr.emp_external_id
-                                        AND ABS(DATEDIFF(SECOND, orr.after_change_clock_time, cr.after_change_clock_time)) / 3600.0 <= 14
+                                        AND ABS(DATEDIFF(SECOND, orr.after_change_clock_time, cr.after_change_clock_time)) / 3600.0 <= @DaysOffset
                                 )
                                 SELECT DISTINCT r.*
                                 FROM legion_time_clock_change_fact r
@@ -417,6 +502,8 @@ namespace FileTransform.FileProcessing
 
                 using (var command = new SqlCommand(query, connection))
                 {
+                    // Add the parameter value for DaysOffset
+                    command.Parameters.AddWithValue("@DaysOffset", fetchRecordsOlderThanDays);
                     using (var reader = await command.ExecuteReaderAsync())
                     {
                         var records = new List<ClockRecord>();
@@ -479,13 +566,12 @@ namespace FileTransform.FileProcessing
 
         public void ReadClockRecordsFromFileAndInsertToDatabase(string filePath)
         {
-            string connectionString = "Server=ECS-VARADHA;Database=ManhattanPunchDB;User Id=manhattan_user;Password=Summer-01;";
             const int batchSize = 1000;
             var skippedRecords = new List<string>(); // To store skipped records
             // List to hold the result set as ClockRecord objects
             var clockRecords = new List<ClockRecord>();
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
@@ -577,8 +663,14 @@ namespace FileTransform.FileProcessing
                       AND emp_external_id = @EmployeeExternalId  
                       AND clock_type = @ClockType
                       AND event_type = @EventType
-                      AND before_change_clock_time = @ClockTimeBeforeChange
-                      AND after_change_clock_time = @ClockTimeAfterChange
+                      AND (
+                           (@ClockTimeBeforeChange IS NULL OR @ClockTimeBeforeChange = '') 
+                           OR before_change_clock_time = @ClockTimeBeforeChange
+                          )
+                      AND (
+                           (@ClockTimeAfterChange IS NULL OR @ClockTimeAfterChange = '') 
+                           OR after_change_clock_time = @ClockTimeAfterChange
+                          )
                 );";
 
                     using (var command = new SqlCommand(insertCommand, connection, transaction))
@@ -625,7 +717,16 @@ namespace FileTransform.FileProcessing
                                     command.Parameters.AddWithValue("@LastModifiedByEmployeeId", parts[4]?.Trim());
                                     command.Parameters.AddWithValue("@LastModifiedByExternalEmployeeId", parts[5]?.Trim());
                                     command.Parameters.AddWithValue("@EmployeeId", parts[6]?.Trim());
-                                    command.Parameters.AddWithValue("@EmployeeExternalId", int.Parse(parts[7]?.Trim()));
+                                    //command.Parameters.AddWithValue("@EmployeeExternalId", parts[7]?.Trim());
+                                    int employeeExternalId;
+                                    object employeeExternalIdValue = int.TryParse(parts[7]?.Trim(), out employeeExternalId)
+                                        ? (object)employeeExternalId
+                                        : DBNull.Value;
+                                    if (employeeExternalIdValue == DBNull.Value)
+                                    {
+                                        LoggerObserver.Info($"Invalid Employee ID..........{parts[7]?.Trim()}");
+                                    }
+                                    command.Parameters.AddWithValue("@EmployeeExternalId", employeeExternalIdValue);
                                     command.Parameters.AddWithValue("@TimeClockId", parts[8]?.Trim());
                                     command.Parameters.AddWithValue("@ClockType", parts[9]?.Trim());
                                     command.Parameters.AddWithValue("@ClockTimeBeforeChange", string.IsNullOrWhiteSpace(parts[10])
@@ -648,7 +749,7 @@ namespace FileTransform.FileProcessing
                                     command.Parameters.AddWithValue("@ClockNoteAfterChange", parts[23]?.Trim());
                                     command.Parameters.AddWithValue("@EventType", parts[24]?.Trim());
                                     command.Parameters.AddWithValue("@IsCurrent", 1);
-                                    command.Parameters.AddWithValue("@InsertBatchId", insertBatchId);
+                                    command.Parameters.AddWithValue("@InsertBatchId", insertBatchId.ToString("D5"));
                                     command.Parameters.AddWithValue("@InsertLoadDt", DateTime.UtcNow);
 
                                     command.ExecuteNonQuery();
@@ -664,9 +765,7 @@ namespace FileTransform.FileProcessing
                                 }
                                 catch (Exception fieldEx)
                                 {
-                                    LoggerObserver.Error(fieldEx, "Error While inserting the records");
-                                    Console.WriteLine($"Error while processing line: {line}");
-                                    Console.WriteLine($"Exception: {fieldEx.Message}");
+                                    LoggerObserver.Error(fieldEx, "Error While inserting the records");                                    
                                 }
                             }
 
@@ -677,14 +776,14 @@ namespace FileTransform.FileProcessing
                             // Log skipped records
                             if (skippedRecords.Count > 0)
                             {
-                                LoggerObserver.Info($"Skipped {skippedRecords.Count} records due to missing location_id. Check SkippedRecords.log for details.");
+                                LoggerObserver.Info($"Skipped {skippedRecords.Count} records due to missing location_id.");
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error occurred: {ex.Message}");
+                    LoggerObserver.Error(ex, "Error Occured inside the module ReadClockRecordsFromFileAndInsertToDatabase");
                     transaction.Rollback();
                     throw;
                 }
