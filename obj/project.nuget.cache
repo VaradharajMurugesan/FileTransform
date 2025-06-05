@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p6J4lavts7A=",
+  "dgSpecHash": "7InUeQaTqeY=",
   "success": true,
-  "projectFilePath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj",
+  "projectFilePath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform_Manhattan.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\varadharaj\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\azure.identity\\1.13.2\\azure.identity.1.13.2.nupkg.sha512",
@@ -76,6 +76,7 @@
     "C:\\Users\\varadharaj\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\varadharaj\\.nuget\\packages\\timezoneconverter\\7.0.0\\timezoneconverter.7.0.0.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
     "C:\\Users\\varadharaj\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",

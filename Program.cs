@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
-using FileTransform.Client;
-using FileTransform.Commands;
-using FileTransform.FileProcessing;
-using FileTransform.Helpers;
-using FileTransform.Logging;
-using FileTransform.Decryption;
+using FileTransform_Manhattan.Client;
+using FileTransform_Manhattan.Commands;
+using FileTransform_Manhattan.FileProcessing;
+using FileTransform_Manhattan.Helpers;
+using FileTransform_Manhattan.Logging;
+using FileTransform_Manhattan.Decryption;
 using NLog;
-using FileTransform.Services;
+using FileTransform_Manhattan.Services;
 using NLog.Config;
 using NLog.Targets;
 using System;
@@ -35,105 +35,88 @@ class Program
             LoggerObserver.Debug("Application Starting");
 
             // Define a list of processor types to handle
-            var processorTypes = new List<string>();
+            //var processorTypes = new List<string>();            
 
-            if (processorType.Equals("payroll", StringComparison.OrdinalIgnoreCase))
+           
+            // Load client settings
+            var clientSettings = ClientSettingsLoader.LoadClientSettings(processorType);
+            // Determine the appropriate fileNameStartsWith value for each processorType
+            string currentFileNameStartsWith = fileNameStartsWith;
+
+
+            LoggerObserver.Info($"Starting processing for processor type: {processorType} with fileNameStartsWith: {currentFileNameStartsWith}");
+
+
+
+            // Extract FTP/SFTP settings
+            string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
+            string host = clientSettings["FTPSettings"]["Host"].ToString();
+            int port = (int)clientSettings["FTPSettings"]["Port"];
+            string username = clientSettings["FTPSettings"]["Username"].ToString();
+            string password = string.Empty;
+
+            string vaultUrl = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_URL"]?.ToString() ?? string.Empty;
+            string tenantId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_TENANT_ID"]?.ToString() ?? string.Empty;
+            string clientId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_CLIENT_ID"]?.ToString() ?? string.Empty;
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_CLIENT_SECRET") ?? string.Empty;
+
+            if (string.IsNullOrEmpty(vaultUrl) ||
+                string.IsNullOrEmpty(tenantId) ||
+                string.IsNullOrEmpty(clientId) ||
+                string.IsNullOrEmpty(clientSecret))
             {
-                // Add both payroll and accrualbalanceexport to the processing queue
-                processorTypes.Add("payroll");
-                processorTypes.Add("accrualbalanceexport");
+                var ex = new InvalidOperationException("Azure Key vault variables are missing. Please set them.");
+                LoggerObserver.Error(ex, ex.Message);
+                throw ex;
             }
-            else
+            try
             {
-                // For other processor types, only add the specified processorType
-                processorTypes.Add(processorType);
-            }
-
-            foreach (var type in processorTypes)
-            {
-                // Determine the appropriate fileNameStartsWith value for each processorType
-                string currentFileNameStartsWith = fileNameStartsWith;
-
-                if (type.Equals("accrualbalanceexport", StringComparison.OrdinalIgnoreCase))
+                // Use the KeyVaultService in your code
+                var keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
+                string keyVault_password = await keyVaultService.GetSFTPPasswordAsync(clientSettings);
+                if (!string.IsNullOrEmpty(keyVault_password))
                 {
-                    // Set fileNameStartsWith explicitly for accrualbalanceexport
-                    currentFileNameStartsWith = "AccrualBalanceExport"; // Replace "accrualfile" with the correct prefix if needed
+                    password = keyVault_password;
                 }
-
-                LoggerObserver.Info($"Starting processing for processor type: {type} with fileNameStartsWith: {currentFileNameStartsWith}");
-
-                // Load client settings
-                var clientSettings = ClientSettingsLoader.LoadClientSettings(type);
-
-                // Extract FTP/SFTP settings
-                string protocol = clientSettings["FTPSettings"]["Protocol"].ToString();
-                string host = clientSettings["FTPSettings"]["Host"].ToString();
-                int port = (int)clientSettings["FTPSettings"]["Port"];
-                string username = clientSettings["FTPSettings"]["Username"].ToString();
-                string password = string.Empty;
-
-                string vaultUrl = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_URL"]?.ToString() ?? string.Empty;
-                string tenantId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_TENANT_ID"]?.ToString() ?? string.Empty;
-                string clientId = clientSettings["AzureKeyVault"]["AZURE_KEYVAULT_CLIENT_ID"]?.ToString() ?? string.Empty;
-                string clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_CLIENT_SECRET") ?? string.Empty;
-
-                if (string.IsNullOrEmpty(vaultUrl) ||
-                    string.IsNullOrEmpty(tenantId) ||
-                    string.IsNullOrEmpty(clientId) ||
-                    string.IsNullOrEmpty(clientSecret))
+                else
                 {
-                    var ex = new InvalidOperationException("Azure Key vault variables are missing. Please set them.");
+                    var ex = new InvalidOperationException("Password for SFTP connection retrieved from Key Vault is not valid");
                     LoggerObserver.Error(ex, ex.Message);
                     throw ex;
                 }
-                try
-                {
-                    // Use the KeyVaultService in your code
-                    var keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
-                    string keyVault_password = await keyVaultService.GetSFTPPasswordAsync(clientSettings);
-                    if (!string.IsNullOrEmpty(keyVault_password))
-                    {
-                        password = keyVault_password;
-                    }
-                    else
-                    {
-                        var ex = new InvalidOperationException("Password for SFTP connection retrieved from Key Vault is not valid");
-                        LoggerObserver.Error(ex, ex.Message);
-                        throw ex;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LoggerObserver.Error(ex, ex.Message);
-                }
-
-                // Extract folder paths
-                string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
-                string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
-                string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
-                string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
-                string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
-                string mappingFilesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
-
-                // Ensure directories exist
-                Directory.CreateDirectory(reprocessingFolder);
-                Directory.CreateDirectory(failedFolder);
-                Directory.CreateDirectory(processedFolder);
-                Directory.CreateDirectory(outputFolder);
-                Directory.CreateDirectory(decryptedFolderOutput);
-                Directory.CreateDirectory(mappingFilesFolder);
-
-                // Initialize file transfer client
-                var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
-
-                // Process reprocessing files
-                await ProcessReprocessingFilesAsync(fileTransferClient, type, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
-
-                // Fetch and process files from FTP/SFTP
-                await FetchAndProcessFilesAsync(fileTransferClient, type, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings, currentFileNameStartsWith);
-
-                LoggerObserver.Info($"Processing completed for processor type: {type}");
             }
+            catch (Exception ex)
+            {
+                LoggerObserver.Error(ex, ex.Message);
+            }
+
+            // Extract folder paths
+            string reprocessingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ReprocessingFolder"].ToString());
+            string failedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["FailedFolder"].ToString());
+            string processedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["ProcessedFolder"].ToString());
+            string outputFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["outputFolder"].ToString());
+            string decryptedFolderOutput = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["decryptedFolderOutput"].ToString());
+            string mappingFilesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, clientSettings["Folders"]["mappingFilesFolder"].ToString());
+
+            // Ensure directories exist
+            Directory.CreateDirectory(reprocessingFolder);
+            Directory.CreateDirectory(failedFolder);
+            Directory.CreateDirectory(processedFolder);
+            Directory.CreateDirectory(outputFolder);
+            Directory.CreateDirectory(decryptedFolderOutput);
+            Directory.CreateDirectory(mappingFilesFolder);
+
+            // Initialize file transfer client
+            var fileTransferClient = FileTransferClientFactory.CreateClient(protocol, host, port, username, password);
+
+            // Process reprocessing files
+            await ProcessReprocessingFilesAsync(fileTransferClient, processorType, reprocessingFolder, processedFolder, failedFolder, outputFolder, decryptedFolderOutput, clientSettings);
+
+            // Fetch and process files from FTP/SFTP
+            await FetchAndProcessFilesAsync(fileTransferClient, processorType, processedFolder, reprocessingFolder, outputFolder, decryptedFolderOutput, clientSettings, currentFileNameStartsWith);
+
+            LoggerObserver.Info($"Processing completed for processor type: {processorType}");
+            
 
 
             LoggerObserver.Info("Application Completed Successfully");
@@ -195,7 +178,7 @@ class Program
                 }
 
                 // Step 3: Process the CSV file using the factory to select the correct processor
-                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processorType, clientSettings);
+                var csvProcessor = await CsvFileProcessorFactory.GetProcessorAsync(processorType, clientSettings);
                 var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
                 await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
 
@@ -255,7 +238,7 @@ class Program
                 }
 
                 // 3. Process the CSV (whether decrypted or raw CSV)
-                var csvProcessor = CsvFileProcessorFactory.GetProcessor(processorType, clientSettings);
+                var csvProcessor = await CsvFileProcessorFactory.GetProcessorAsync(processorType, clientSettings);
                 var processCsvCommand = new ProcessFileCommand(csvProcessor, finalFilePath, outputFolder);
                 await RetryHelper.RetryAsync(() => processCsvCommand.ExecuteAsync());
 

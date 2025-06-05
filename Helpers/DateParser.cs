@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.Helpers
+namespace FileTransform_Manhattan.Helpers
 {
     public static class DateParser
     {

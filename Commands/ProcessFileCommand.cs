@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FileTransform.FileProcessing;
-using FileTransform.Logging;
+using FileTransform_Manhattan.FileProcessing;
+using FileTransform_Manhattan.Logging;
 
-namespace FileTransform.Commands
+namespace FileTransform_Manhattan.Commands
 {
     public interface ICommand
     {

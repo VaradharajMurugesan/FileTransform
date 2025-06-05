@@ -4,12 +4,12 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using FileTransform.Logging;
+using FileTransform_Manhattan.Logging;
 using Renci.SshNet;
 using System.Xml;
-using FileTransform.Services;
+using FileTransform_Manhattan.Services;
 
-namespace FileTransform.SFTPExtract
+namespace FileTransform_Manhattan.SFTPExtract
 {
     public class SFTPFileExtract : IDisposable
     {
@@ -32,15 +32,12 @@ namespace FileTransform.SFTPExtract
             _username = clientSettings["FTPSettings"]["Username"]?.ToString() ?? string.Empty;
             _port = (int)clientSettings["FTPSettings"]["Port"];
 
-            string clientName = clientSettings["ClientName"]?.ToString() ?? string.Empty;
-
-            if (clientName.Equals("manhattanpunch", StringComparison.OrdinalIgnoreCase))
-            {
-                // Retrieve SFTP settings for FiveBelow from clientSettings
-                _fbhost = clientSettings["FiveBelow_FTPSettings"]["Host"]?.ToString() ?? string.Empty;
-                _fbusername = clientSettings["FiveBelow_FTPSettings"]["Username"]?.ToString() ?? string.Empty;
-                _fbport = (int)clientSettings["FiveBelow_FTPSettings"]["Port"];
-            }
+            
+            // Retrieve SFTP settings for FiveBelow from clientSettings
+            _fbhost = clientSettings["FiveBelow_FTPSettings"]["Host"]?.ToString() ?? string.Empty;
+            _fbusername = clientSettings["FiveBelow_FTPSettings"]["Username"]?.ToString() ?? string.Empty;
+            _fbport = (int)clientSettings["FiveBelow_FTPSettings"]["Port"];
+            
 
             // Retrieve the passwords asynchronously and wait for them
             Task.Run(async () =>
@@ -62,11 +59,10 @@ namespace FileTransform.SFTPExtract
             {
                 throw new InvalidOperationException("SFTP password retrieval failed.");
             }
-
             _sftpClient = new SftpClient(_host, _port, _username, _password);
             _fivebelowsftpClient = new SftpClient(_fbhost, _fbport, _fbusername, _fbpassword);
-
             LoggerObserver.Info($"SFTP clients initialized: Legacy({_host}:{_port}), FiveBelow({_fbhost}:{_fbport})");
+            
         }
 
         /// <summary>
@@ -95,22 +91,18 @@ namespace FileTransform.SFTPExtract
                     throw new InvalidOperationException("Legacy SFTP password could not be retrieved from Key Vault.");
                 }
 
-                string clientName = clientSettings["ClientName"]?.ToString() ?? string.Empty;
-
-                if (clientName.Equals("manhattanpunch", StringComparison.OrdinalIgnoreCase))
+              
+                clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_MANH_SFTP_SECRET") ?? string.Empty;
+                keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
+                string fiveBelowPassword = await keyVaultService.GetSecretAsync(clientSettings["FiveBelow_FTPSettings"]["FB_SFTPPassword_SecretName"]?.ToString() ?? string.Empty);
+                if (string.IsNullOrEmpty(fiveBelowPassword))
                 {
-                    clientSecret = Environment.GetEnvironmentVariable("AZURE_KEYVAULT_MANH_SFTP_SECRET") ?? string.Empty;
-                    keyVaultService = new KeyVaultService(vaultUrl, tenantId, clientId, clientSecret);
-                    string fiveBelowPassword = await keyVaultService.GetSecretAsync(clientSettings["FiveBelow_FTPSettings"]["FB_SFTPPassword_SecretName"]?.ToString() ?? string.Empty);
-                    if (string.IsNullOrEmpty(fiveBelowPassword))
-                    {
-                        throw new InvalidOperationException("FiveBelow SFTP password could not be retrieved from Key Vault.");
-                    }
-
-                    return (legacyPassword, fiveBelowPassword);
+                    throw new InvalidOperationException("FiveBelow SFTP password could not be retrieved from Key Vault.");
                 }
 
-                return (legacyPassword, null); // Returning only the legacy password
+                return (legacyPassword, fiveBelowPassword);               
+
+               
             }
             catch (Exception ex)
             {

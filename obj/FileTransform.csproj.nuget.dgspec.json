@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj": {}
+    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform.csproj": {}
   },
   "projects": {
-    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj": {
+    "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj",
+        "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform.csproj",
         "projectName": "FileTransform",
-        "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj",
+        "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform.csproj",
         "packagesPath": "C:\\Users\\varadharaj\\.nuget\\packages\\",
-        "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\obj\\",
+        "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

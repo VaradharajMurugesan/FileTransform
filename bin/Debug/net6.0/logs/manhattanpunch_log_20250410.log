@@ -1,0 +1,14 @@
+2025-04-10 23:56:07.9261 [DEBUG] Application Starting 
+2025-04-10 23:56:11.5365 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-04-10 23:56:14.6280 [ERROR] An error occurred while downloading the file: Permission denied (password). System.Exception: An error occurred while downloading the file: Permission denied (password).
+2025-04-10 23:56:14.6280 [ERROR] No valid file was downloaded for processing. System.Exception: No valid file was downloaded for processing.
+2025-04-10 23:56:14.6280 [INFO] Processing completed for processor type: manhattanpunch 
+2025-04-10 23:56:14.6280 [INFO] Application Completed Successfully 
+2025-04-10 23:57:59.9192 [DEBUG] Application Starting 
+2025-04-10 23:58:05.3665 [INFO] Starting processing for processor type: manhattanpunch with fileNameStartsWith: TimeClockChangeEntity 
+2025-04-10 23:58:21.5597 [INFO] Attempting to download file from: /home/fivebelow-uat/outbox/extracts/TimeClockChangeEntity-20250410062252.csv.gz 
+2025-04-10 23:58:24.0272 [INFO] Latest file downloaded: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-20250410062252.csv.gz 
+2025-04-10 23:58:24.0610 [INFO] File has been decompressed to: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-20250410062252.csv 
+2025-04-10 23:58:24.0610 [INFO] Deleted the .gz file: C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-20250410062252.csv.gz 
+2025-04-10 23:58:24.0709 [INFO] No decryption needed for C:\Users\varadharaj\AppData\Local\Temp\TimeClockChangeEntity-20250410062252.csv 
+2025-04-10 23:58:49.9924 [ERROR] Azure Key vault variables are missing. Please set them. System.InvalidOperationException: Azure Key vault variables are missing. Please set them.

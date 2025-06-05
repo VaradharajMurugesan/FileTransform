@@ -1,10 +1,10 @@
 ﻿using Azure;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using FileTransform.Logging;
+using FileTransform_Manhattan.Logging;
 using Newtonsoft.Json.Linq;
 
-namespace FileTransform.Services
+namespace FileTransform_Manhattan.Services
 {
     public class KeyVaultService
     {
@@ -93,7 +93,6 @@ namespace FileTransform.Services
 
                 // Extract the actual secret value
                 string secretValue = secretResponse?.Value?.Value;
-
                 if (string.IsNullOrEmpty(secretValue))
                 {
                     throw new InvalidOperationException($"Secret '{secretName}' is empty or could not be retrieved.");

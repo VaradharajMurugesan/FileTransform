@@ -1,11 +1,11 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using Newtonsoft.Json.Linq;
-using FileTransform.DataModel;
-using FileTransform.Helpers;
-using FileTransform.Logging;
-using FileTransform.SFTPExtract;
-using FileTransform.Services;
+using FileTransform_Manhattan.DataModel;
+using FileTransform_Manhattan.Helpers;
+using FileTransform_Manhattan.Logging;
+using FileTransform_Manhattan.SFTPExtract;
+using FileTransform_Manhattan.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,9 +20,10 @@ using static System.Net.WebRequestMethods;
 using System.IO;
 using System.Configuration;
 using Renci.SshNet;
+using TimeZoneConverter;
 
 
-namespace FileTransform.FileProcessing
+namespace FileTransform_Manhattan.FileProcessing
 {
     internal class ManhattanPunchProcessor : ICsvFileProcessorStrategy
     {
@@ -30,7 +31,6 @@ namespace FileTransform.FileProcessing
         // Grouped HR mapping: Dictionary maps employeeId -> EmployeeHrData
         private Dictionary<int, ManhattanLocationData> LocationMapping;
         private Dictionary<string, LocationEntityData> TimeZoneMapping;
-        private readonly HashSet<string> payrollProcessedFileNumbers;
         private bool mealBreakFlag = false;
         private string outputFileName = string.Empty;
         private string sftpOutPutFolderPath = string.Empty;
@@ -40,21 +40,20 @@ namespace FileTransform.FileProcessing
         private SFTPFileExtract _sftpFileExtract = null;  // Make it a private readonly field
         ExtractLocationEntityData extractLocation = new ExtractLocationEntityData();
 
-        public ManhattanPunchProcessor(JObject clientSettings)
+        private ManhattanPunchProcessor(JObject clientSettings)
         {
-            _connectionString = clientSettings["SQLConnection"]["manhattanDBConnection"]?.ToString() ?? string.Empty;
-            var payroll_clientSettings = ClientSettingsLoader.LoadClientSettings("payroll");
-            
             mealBreakFlag = bool.TryParse(clientSettings["Flags"]["MealBreakRequired"]?.ToString(), out bool flag) && flag;
-            // Retrieve the value from appsettings.json and parse it as an integer
+
             fetchRecordsOlderThanDays = int.TryParse(clientSettings["Flags"]["DataRetrievalDaysOffset"]?.ToString(), out int days)
                 ? days
-                : 14; // Default value in case of parsing failure
+                : 14;
+        }
 
-            //SQL Database password
-            GetDBPasswordFromKeyVault(clientSettings);
-
-            
+        public static async Task<ManhattanPunchProcessor> CreateAsync(JObject clientSettings)
+        {
+            var processor = new ManhattanPunchProcessor(clientSettings);
+            await processor.GetDBPasswordFromKeyVault(clientSettings);
+            return processor;
         }
 
         public async Task GetDBPasswordFromKeyVault(JObject clientSettings)
@@ -111,7 +110,7 @@ namespace FileTransform.FileProcessing
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT location_id, warehouse_id, shipcenter_location FROM warehouse_location"; // Adjust as needed
+            string query = "SELECT location_id, warehouse_id, shipcenter_location FROM warehouse_location WHERE is_enabled = 1"; // Adjust as needed
 
             // Use Dapper to execute the query and map the results
             var locations = connection.Query<ManhattanLocationData>(query);
@@ -162,6 +161,10 @@ namespace FileTransform.FileProcessing
                         XmlElement root = xmlDoc.CreateElement("tXML");
                         xmlDoc.AppendChild(root);
 
+                        // Add XML declaration with standalone="yes"
+                        XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", "yes");
+                        xmlDoc.InsertBefore(xmlDeclaration, root);
+
                         // Add header elements
                         AddHeaderElements(xmlDoc, root);
 
@@ -184,6 +187,10 @@ namespace FileTransform.FileProcessing
                                 else if (shiftGroup.Records.Any(r => r.EventType == "Delete"))
                                 {
                                     ProcessDeleteEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
+                                }
+                                else if (shiftGroup.Records.Any(r => r.EventType == "Delete_Create"))
+                                {
+                                    ProcessDeleteCreateEvent(xmlDoc, timeAndAttendance, ref tranNumber, shiftGroup);
                                 }
                             }
                             catch (Exception ex)
@@ -214,7 +221,7 @@ namespace FileTransform.FileProcessing
             }
         }
 
-        
+
 
         // Helper method to add header elements
         private void AddHeaderElements(XmlDocument xmlDoc, XmlElement root)
@@ -223,7 +230,7 @@ namespace FileTransform.FileProcessing
             root.AppendChild(header);
 
             header.AppendChild(CreateElement(xmlDoc, "Source", "Host"));
-            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT"+ insertBatchId.ToString("D5")));
+            header.AppendChild(CreateElement(xmlDoc, "Batch_ID", "BT" + insertBatchId.ToString("D5")));
             header.AppendChild(CreateElement(xmlDoc, "Message_Type", "TAS"));
             header.AppendChild(CreateElement(xmlDoc, "Company_ID", "01"));
             header.AppendChild(CreateElement(xmlDoc, "Msg_Locale", "English (United States)"));
@@ -239,7 +246,7 @@ namespace FileTransform.FileProcessing
 
             mergeRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
             mergeRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.First().ManhattanWarehouseId));
-            mergeRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
+            mergeRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.Records.First().EmployeeExternalId.ToString()));
 
             DateTime? empClockIn = GetClockInTime(group, "ShiftBegin");
             DateTime? empClockOut = GetClockOutTime(group, "ShiftEnd");
@@ -264,6 +271,26 @@ namespace FileTransform.FileProcessing
 
             tranNumber++;
         }
+        // Helper method to process the "Delete" event
+        private void ProcessDeleteCreateEvent(XmlDocument xmlDoc, XmlElement timeAndAttendance, ref int tranNumber, ShiftGroup group)
+        {
+            XmlElement tasData = xmlDoc.CreateElement("TASData");
+            timeAndAttendance.AppendChild(tasData);
+            XmlElement deleteClockInRange = xmlDoc.CreateElement("DeleteClockInRange");
+            tasData.AppendChild(deleteClockInRange);
+
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.First().ManhattanWarehouseId));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.Records.First().EmployeeExternalId.ToString()));
+
+            DateTime? startDateForDel = group.Records.Min(r => r.ClockTimeAfterChange);
+            DateTime? endDateForDel = group.Records.Max(r => r.ClockTimeAfterChange);
+
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "StartDateForDel", startDateForDel?.ToString("MM/dd/yyyy HH:mm:ss")));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EndDateForDel", endDateForDel?.ToString("MM/dd/yyyy HH:mm:ss")));
+
+            tranNumber++;
+        }
 
         // Helper method to process the "Delete" event
         private void ProcessDeleteEvent(XmlDocument xmlDoc, XmlElement timeAndAttendance, ref int tranNumber, ShiftGroup group)
@@ -275,7 +302,7 @@ namespace FileTransform.FileProcessing
 
             deleteClockInRange.AppendChild(CreateElement(xmlDoc, "TranNumber", tranNumber.ToString("D9")));
             deleteClockInRange.AppendChild(CreateElement(xmlDoc, "Warehouse", group.Records.First().ManhattanWarehouseId));
-            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.EmployeeExternalId.ToString()));
+            deleteClockInRange.AppendChild(CreateElement(xmlDoc, "EmployeeUserId", group.Records.First().EmployeeExternalId.ToString()));
 
             DateTime? startDateForDel = group.Records.Min(r => r.ClockTimeBeforeChange);
             DateTime? endDateForDel = group.Records.Max(r => r.ClockTimeBeforeChange);
@@ -402,7 +429,7 @@ namespace FileTransform.FileProcessing
         {
             DateTime startTime = DateTime.Now;
             string timestamp = startTime.ToString("yyyyMMddHHmmss");
-            LoggerObserver.LogFileProcessed($"Start processing Payroll CSV: {filePath} at {startTime}");
+            LoggerObserver.LogFileProcessed($"Start processing Manhattanpunch CSV: {filePath} at {startTime}");
 
             try
             {
@@ -419,15 +446,95 @@ namespace FileTransform.FileProcessing
 
                 // Prepare a list of ShiftGroups to pass to XML generation
                 var allGroups = new List<ShiftGroup>();
-
+                // 🔄 Define the custom order
+                var eventTypeOrder = new Dictionary<string, int>
+                {
+                    { "Delete", 1 },
+                    { "Delete_Create", 2 },
+                    { "Create", 3 }
+                };
                 // Process each employee's records (grouped by EmployeeExternalId and EventTypeGroup)
                 foreach (var employeeGroup in groupedRecords)
                 {
                     // Split the employee's records into groups based on a 14-hour time gap
                     var groupedByTimeGap = SplitByTimeGap(employeeGroup.OrderBy(r => r.ClockTimeAfterChange), TimeSpan.FromHours(14));
 
+                    foreach (var group in groupedByTimeGap)
+                    {
+
+                        var cookedGroup = new List<ClockRecord>(); // Replace ClockRecord with your actual record type
+                        // Step 1: Add all original records
+                        cookedGroup.AddRange(group.Records);
+                        var approveRejectRecords = group.Records.Where(r => r.EventType == "ApproveReject").ToList();
+                        if (approveRejectRecords.Any())
+                        {
+                            foreach (var record in approveRejectRecords)
+                            {
+                                // Determine the clock type
+                                var clockType = record.ClockType;
+                                var ClockTimeAfterChange = record.ClockTimeAfterChange;
+                                var ClockTimeBeforeChange = record.ClockTimeBeforeChange;
+                                // Find all matching 'Create' records with same ClockType
+                                var matchingCreateRecords = group.Records
+                                    .Where(r => r.EventType == "Create")
+                                    .ToList();
+
+
+
+                                foreach (var match in matchingCreateRecords)
+                                {
+                                    // Clone and modify
+                                    var duplicate = match.Clone(); // Ensure your ClockRecord implements Clone()
+                                    duplicate.EventType = "Delete_Create";
+                                    cookedGroup.Add(duplicate);
+
+                                    if (match.ClockType == clockType && match.ClockTimeAfterChange == ClockTimeBeforeChange)
+                                    {
+                                        match.ClockTimeAfterChange = ClockTimeAfterChange;
+                                    }
+
+
+                                    //if (record.ClockType == clockType)
+                                    //{
+                                    //    duplicate.ClockTimeAfterChange = record.ClockTimeAfterChange;
+                                    //}
+                                    //duplicate.EventType = "Create";
+
+                                    // Add to cooked group
+                                    //cookedGroup.Add(duplicate);
+                                }
+
+                                // Step 2: Remove all ApproveReject records before adding to final output
+                                cookedGroup = cookedGroup.Where(r => r.EventType != "ApproveReject").ToList();
+                                // Add cooked group to final list
+                                //allGroups.Add(new ShiftGroup { Records = cookedGroup });
+                                // 🔄 Regroup and sort cookedGroup by EventType in the defined order
+                                var finalGroupedByEventType = cookedGroup
+                                    .GroupBy(r => r.EventType)
+                                    .OrderBy(g => eventTypeOrder.ContainsKey(g.Key) ? eventTypeOrder[g.Key] : int.MaxValue) // Unknown types go last
+                                    .ToList();
+
+                                foreach (var eventTypeGroup in finalGroupedByEventType)
+                                {
+                                    allGroups.Add(new ShiftGroup
+                                    {
+                                        Records = eventTypeGroup.ToList()
+                                    });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // No ApproveReject records, so just add the group as-is
+                            allGroups.Add(new ShiftGroup
+                            {
+                                Records = cookedGroup
+                            });
+                        }
+
+                    }
                     // Add to the list of all groups
-                    allGroups.AddRange(groupedByTimeGap);
+                    //allGroups.AddRange(groupedByTimeGap);
                 }
 
                 // Generate XML for all groups
@@ -531,7 +638,9 @@ namespace FileTransform.FileProcessing
                             {
                                 try
                                 {
-                                    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneData.TimeZone);
+                                    string windowsTimeZone = TZConvert.IanaToWindows(timeZoneData.TimeZone);
+                                    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(windowsTimeZone);
+                                    //var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneData.TimeZone);
                                     clockRecord.ClockTimeBeforeChange = ConvertToLocalTime(clockRecord.ClockTimeBeforeChange, timeZoneInfo);
                                     clockRecord.ClockTimeAfterChange = ConvertToLocalTime(clockRecord.ClockTimeAfterChange, timeZoneInfo);
                                 }
@@ -570,7 +679,6 @@ namespace FileTransform.FileProcessing
             var skippedRecords = new List<string>(); // To store skipped records
             // List to hold the result set as ClockRecord objects
             var clockRecords = new List<ClockRecord>();
-
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -580,7 +688,7 @@ namespace FileTransform.FileProcessing
                     resetCommand.ExecuteNonQuery();
                 }
 
-               
+
                 using (var getBatchIdCommand = new SqlCommand("SELECT MAX(INSERT_BATCH_ID) FROM legion_time_clock_change_fact", connection))
                 {
                     var result = getBatchIdCommand.ExecuteScalar();
@@ -686,10 +794,12 @@ namespace FileTransform.FileProcessing
                                 try
                                 {
                                     var parts = line.Split(',');
+                            
 
                                     int locationId;
                                     if (!int.TryParse(parts[2]?.Trim(), out locationId))
                                     {
+                                        LoggerObserver.OnFileFailed($"Invalid LocationId - skipped: {parts[2]} | Line: {line}");
                                         skippedRecords.Add(line);
                                         continue;
                                     }
@@ -765,7 +875,8 @@ namespace FileTransform.FileProcessing
                                 }
                                 catch (Exception fieldEx)
                                 {
-                                    LoggerObserver.Error(fieldEx, "Error While inserting the records");                                    
+                                    LoggerObserver.Error(fieldEx, $"Error while inserting line: {line}");
+				                    skippedRecords.Add(line);
                                 }
                             }
 
@@ -799,8 +910,10 @@ namespace FileTransform.FileProcessing
         // Helper method to convert UTC time to local time based on TimeZoneInfo
         private DateTime? ConvertToLocalTime(DateTime? utcTime, TimeZoneInfo timeZoneInfo)
         {
+            LoggerObserver.Info($"UTC Time before converting to timezone is.......................{utcTime}");
             if (utcTime.HasValue)
             {
+                LoggerObserver.Info($"After UTC time converted to the timezone specific is ........................{TimeZoneInfo.ConvertTimeFromUtc(utcTime.Value, timeZoneInfo)}");
                 return TimeZoneInfo.ConvertTimeFromUtc(utcTime.Value, timeZoneInfo);
             }
             return null;

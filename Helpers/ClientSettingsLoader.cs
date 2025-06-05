@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.Helpers
+namespace FileTransform_Manhattan.Helpers
 {
     public static class ClientSettingsLoader
     {
-        private static readonly string ConfigFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+        private static readonly string ConfigFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AppSettings/appsettings.json");
 
         public static JObject LoadClientSettings(string clientName)
         {

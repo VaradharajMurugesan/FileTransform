@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
-using FileTransform.DataModel;
-using FileTransform.Logging;
+using FileTransform_Manhattan.DataModel;
+using FileTransform_Manhattan.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.FileProcessing
+namespace FileTransform_Manhattan.FileProcessing
 {
     internal class ExtractEmployeeEntityData
     {

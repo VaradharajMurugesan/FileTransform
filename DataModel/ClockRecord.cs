@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.DataModel
+namespace FileTransform_Manhattan.DataModel
 {
     public class ClockRecord
     {
@@ -39,6 +39,11 @@ namespace FileTransform.DataModel
         public string InsertBatchId { get; set; }
         public DateTime InsertLoadDt { get; set; }
         public string ManhattanWarehouseId { get; set; } // Manhattan Warehouse ID
+
+        public ClockRecord Clone()
+        {
+            return (ClockRecord)this.MemberwiseClone();
+        }
     }
 
     // Model class representing a grouped shift

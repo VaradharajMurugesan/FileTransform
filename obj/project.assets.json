@@ -1246,6 +1246,19 @@
             "rid": "win"
           }
         }
+      },
+      "TimeZoneConverter/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/TimeZoneConverter.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/TimeZoneConverter.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
@@ -3569,6 +3582,28 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TimeZoneConverter/7.0.0": {
+      "sha512": "sFbY65N/5GdsHx7nkdHFHUG+5Ar4W0w6Aks7Y2X+Q4NOTw6XyX2Il7jm+4tPkc//4mA3nG0RdxI8gKgoJitdLw==",
+      "type": "package",
+      "path": "timezoneconverter/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/TimeZoneConverter.dll",
+        "lib/net462/TimeZoneConverter.xml",
+        "lib/net6.0/TimeZoneConverter.dll",
+        "lib/net6.0/TimeZoneConverter.xml",
+        "lib/net8.0/TimeZoneConverter.dll",
+        "lib/net8.0/TimeZoneConverter.xml",
+        "lib/net9.0/TimeZoneConverter.dll",
+        "lib/net9.0/TimeZoneConverter.xml",
+        "lib/netstandard2.0/TimeZoneConverter.dll",
+        "lib/netstandard2.0/TimeZoneConverter.xml",
+        "timezoneconverter.7.0.0.nupkg.sha512",
+        "timezoneconverter.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -3585,7 +3620,8 @@
       "Newtonsoft.Json >= 13.0.3",
       "Polly >= 8.4.1",
       "SSH.NET >= 2024.1.0",
-      "System.Data.SQLite >= 1.0.119"
+      "System.Data.SQLite >= 1.0.119",
+      "TimeZoneConverter >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -3595,11 +3631,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj",
-      "projectName": "FileTransform",
-      "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\FileTransform.csproj",
+      "projectUniqueName": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform_Manhattan.csproj",
+      "projectName": "FileTransform_Manhattan",
+      "projectPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\FileTransform_Manhattan.csproj",
       "packagesPath": "C:\\Users\\varadharaj\\.nuget\\packages\\",
-      "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform\\obj\\",
+      "outputPath": "D:\\Emergere\\ConnorsLLC\\ConnorsLLC_Project\\FileTransform_Manhattan\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3690,6 +3726,10 @@
           "System.Data.SQLite": {
             "target": "Package",
             "version": "[1.0.119, )"
+          },
+          "TimeZoneConverter": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         },
         "imports": [

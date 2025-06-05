@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.FileProcessing
+namespace FileTransform_Manhattan.FileProcessing
 {
     public interface ICsvFileProcessorStrategy
     {
         Task ProcessAsync(string filePath, string destinationPath);
+
     }
 
 }

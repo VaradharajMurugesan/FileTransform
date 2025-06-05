@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.Client
+namespace FileTransform_Manhattan.Client
 {
     public interface IFileTransferClient
     {

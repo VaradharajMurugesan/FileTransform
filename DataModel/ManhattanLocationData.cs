@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTransform.DataModel
+namespace FileTransform_Manhattan.DataModel
 {
     public class ManhattanLocationData
     {

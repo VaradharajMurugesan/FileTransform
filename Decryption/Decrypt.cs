@@ -1,6 +1,6 @@
 ﻿using DidiSoft.Pgp;
 
-namespace FileTransform.Decryption
+namespace FileTransform_Manhattan.Decryption
 {
     public class Decrypt
     {

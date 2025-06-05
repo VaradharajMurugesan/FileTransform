@@ -3,7 +3,7 @@ using NLog.Config;
 using NLog.Targets;
 using System;
 
-namespace FileTransform.Logging
+namespace FileTransform_Manhattan.Logging
 {
     public class LoggerObserver
     {
